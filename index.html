@@ -1,28 +1,26 @@
-<html><head><base href="https://websim.ai/studyclock/" /><title>StudySync - Advanced Focus Timer with Study Planner</title>
+<html><head><base href="https://websim.ai/studyclock/" /><title>讀書排程 - Advanced Focus Timer with Study Planner</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
   :root {
-    --primary-color: #6c5ce7;
-    --secondary-color: #00cec9;
-    --background-color: #f9f9f9;
-    --text-color: #2d3436;
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --background-color: #ecf0f1;
+    --text-color: #34495e;
     --card-background: #ffffff;
-    --accent-color: #fd79a8;
-    --success-color: #00b894;
-    --warning-color: #fdcb6e;
+    --accent-color: #e74c3c;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
   }
 
   body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     margin: 0;
     padding: 20px;
     min-height: 100vh;
-    background-image: 
-      linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(0, 206, 201, 0.1) 100%);
-    background-attachment: fixed;
+    line-height: 1.6;
   }
 
   .container {
@@ -35,7 +33,7 @@
 
   .card {
     background-color: var(--card-background);
-    border-radius: 20px;
+    border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     padding: 2rem;
     transition: all 0.3s ease;
@@ -55,15 +53,16 @@
   }
 
   h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 700;
     margin-bottom: 2rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    letter-spacing: 1px;
   }
 
   h2 {
     font-size: 1.8rem;
-    font-weight: 600;
+    font-weight: 500;
     position: relative;
     padding-bottom: 10px;
   }
@@ -85,17 +84,13 @@
   }
 
   #timer, #pomodoroTimer {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 700;
     color: var(--primary-color);
     text-align: center;
     margin: 1rem 0;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
-  }
-
-  #timer:hover, #pomodoroTimer:hover {
-    transform: scale(1.05);
   }
 
   .button-group {
@@ -112,7 +107,7 @@
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -140,7 +135,7 @@
 
   #resetBtn, #pomodoroResetBtn {
     background-color: var(--warning-color);
-    color: var(--text-color);
+    color: white;
   }
 
   select, input[type="text"], input[type="number"], input[type="date"], input[type="time"] {
@@ -158,7 +153,7 @@
   select:focus, input:focus {
     outline: none;
     border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(0, 206, 201, 0.3);
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.3);
   }
 
   #records, #leaderboard, #studyPlan {
@@ -215,16 +210,12 @@
 
   #currentSubjectTitle {
     font-size: 1.3rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--primary-color);
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
     transition: all 0.3s ease;
-  }
-
-  #currentSubjectTitle:hover {
-    transform: scale(1.05);
   }
 
   ::-webkit-scrollbar {
@@ -243,48 +234,6 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-color);
-  }
-
-  .floating {
-    animation: floating 3s ease-in-out infinite;
-  }
-
-  @keyframes floating {
-    0% { transform: translate(0,  0px); }
-    50%  { transform: translate(0, 15px); }
-    100%   { transform: translate(0, -0px); }   
-  }
-
-  .pulse {
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes slideIn {
-    from { 
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    to { 
-      opacity: 1;
-      transform: translateX(0);
-    }
   }
 
   .plan-item {
@@ -312,25 +261,60 @@
     width: 100%;
     margin-top: 1rem;
   }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-top: 1rem;
+    overflow: hidden;
+  }
+
+  .progress {
+    height: 100%;
+    background-color: var(--secondary-color);
+    width: 0;
+    transition: width 0.3s ease;
+  }
 </style>
 </head>
 <body>
-  <h1 class="floating">StudySync</h1>
+  <h1>讀書排程</h1>
   <div class="container">
     <div class="card">
-      <h2>學習時鐘</h2>
-      <div id="currentSubjectTitle" class="pulse">請選擇科目</div>
+      <div class="card-header">
+        <span class="card-icon">⏱️</span>
+        <h2>學習時鐘</h2>
+      </div>
+      <div id="currentSubjectTitle">請選擇科目</div>
       <select id="subjectSelect">
         <option value="">選擇科目</option>
         <option value="數學">數學</option>
         <option value="語文">語文</option>
         <option value="英語">英語</option>
-        <option value="科學">科學</option>
+        <option value="自然">自然</option>
         <option value="歷史">歷史</option>
         <option value="地理">地理</option>
       </select>
       <input type="text" id="customSubject" placeholder="或輸入自定義科目">
-      <div id="timer" class="floating">00:00:00</div>
+      <div id="timer">00:00:00</div>
+      <div class="progress-bar">
+        <div class="progress" id="timerProgress"></div>
+      </div>
       <div class="button-group">
         <button id="startBtn">開始</button>
         <button id="stopBtn">暫停</button>
@@ -342,9 +326,15 @@
     </div>
     
     <div class="card">
-      <h2>番茄鐘</h2>
-      <div id="pomodoroTimer" class="floating">25:00</div>
-      <div id="pomodoroStatus" class="pulse">準備開始</div>
+      <div class="card-header">
+        <span class="card-icon">🍅</span>
+        <h2>番茄鐘</h2>
+      </div>
+      <div id="pomodoroTimer">25:00</div>
+      <div class="progress-bar">
+        <div class="progress" id="pomodoroProgress"></div>
+      </div>
+      <div id="pomodoroStatus">準備開始</div>
       <div class="button-group">
         <button id="pomodoroStartBtn">開始番茄鐘</button>
         <button id="pomodoroStopBtn">暫停番茄鐘</button>
@@ -363,12 +353,18 @@
     </div>
     
     <div class="card">
-      <h2>排行榜</h2>
+      <div class="card-header">
+        <span class="card-icon">🏆</span>
+        <h2>排行榜</h2>
+      </div>
       <div id="leaderboard"></div>
     </div>
 
     <div class="card">
-      <h2>讀書計畫</h2>
+      <div class="card-header">
+        <span class="card-icon">📅</span>
+        <h2>讀書計畫</h2>
+      </div>
       <input type="date" id="planDate">
       <input type="time" id="planTime">
       <input type="text" id="planSubject" placeholder="科目">
@@ -419,6 +415,9 @@
     const addPlanBtn = document.getElementById('addPlanBtn');
     const studyPlanDisplay = document.getElementById('studyPlan');
 
+    const timerProgress = document.getElementById('timerProgress');
+    const pomodoroProgress = document.getElementById('pomodoroProgress');
+
     const workSound = new Audio('https://websim.ai/studyclock/work_sound.mp3');
     const breakSound = new Audio('https://websim.ai/studyclock/break_sound.mp3');
 
@@ -433,16 +432,15 @@
 
     function updateDisplay() {
       timerDisplay.textContent = formatTime(seconds);
+      timerProgress.style.width = `${(seconds / 3600) * 100}%`;
     }
 
     function updateSubjectTitle() {
       currentSubject = customSubject.value || subjectSelect.value;
       if (currentSubject) {
         currentSubjectTitle.textContent = `當前科目：${currentSubject}`;
-        currentSubjectTitle.classList.add('pulse');
       } else {
         currentSubjectTitle.textContent = '請選擇科目';
-        currentSubjectTitle.classList.remove('pulse');
       }
     }
 
@@ -460,7 +458,6 @@
         }, 1000);
         startBtn.textContent = '繼續';
         updateSubjectTitle();
-        timerDisplay.classList.add('floating');
       }
     }
 
@@ -471,7 +468,6 @@
         startBtn.textContent = '開始';
         recordStudyTime();
         updateLeaderboard();
-        timerDisplay.classList.remove('floating');
       }
     }
 
@@ -481,7 +477,6 @@
       updateDisplay();
       startBtn.textContent = '開始';
       currentSubjectTitle.textContent = '請選擇科目';
-      currentSubjectTitle.classList.remove('pulse');
     }
 
     function recordStudyTime() {
@@ -489,7 +484,6 @@
       record.className = 'record';
       record.textContent = `${currentSubject}: ${formatTime(seconds)}`;
       records.insertBefore(record, records.firstChild);
-      record.style.animation = 'fadeIn 0.5s';
     }
 
     function updateLeaderboard() {
@@ -520,7 +514,6 @@
           item.className = 'leaderboard-item';
           item.textContent = `${index + 1}. ${user}: ${formatTime(time)}`;
           leaderboardDisplay.appendChild(item);
-          item.style.animation = `slideIn 0.5s ${index * 0.1}s both`;
         });
       });
     }
@@ -529,6 +522,8 @@
       const minutes = Math.floor(pomodoroSeconds / 60);
       const seconds = pomodoroSeconds % 60;
       pomodoroTimerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      const totalSeconds = isWorkTime ? workTimeInput.value * 60 : breakTimeInput.value * 60;
+      pomodoroProgress.style.width = `${((totalSeconds - pomodoroSeconds) / totalSeconds) * 100}%`;
     }
 
     function startPomodoro() {
@@ -560,8 +555,6 @@
         }, 1000);
         pomodoroStartBtn.textContent = '繼續番茄鐘';
         pomodoroStatus.textContent = isWorkTime ? "工作時間" : "休息時間";
-        pomodoroTimerDisplay.classList.add('floating');
-        pomodoroStatus.classList.add('pulse');
       }
     }
 
@@ -571,8 +564,6 @@
         clearInterval(pomodoroTimer);
         pomodoroStartBtn.textContent = '開始番茄鐘';
         pomodoroStatus.textContent = "已暫停";
-        pomodoroTimerDisplay.classList.remove('floating');
-        pomodoroStatus.classList.remove('pulse');
       }
     }
 
@@ -638,7 +629,6 @@
         };
         
         studyPlanDisplay.appendChild(planItem);
-        planItem.style.animation = `slideIn 0.5s ${index * 0.1}s both`;
       });
     }
 
