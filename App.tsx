@@ -7,6 +7,8 @@ import SidebarMenu from './components/SidebarMenu';
 import AdBanner from './components/AdBanner';
 import NextEvent from './components/NextEvent';
 import ClockHeader from './components/ClockHeader';
+import ExamRules from './components/ExamRules';
+import ExamReminderModal from './components/ExamReminderModal';
 import { EXAM_NAME, EXAM_DATES, TARGET_DATE } from './constants';
 
 const App: React.FC = () => {
@@ -14,6 +16,7 @@ const App: React.FC = () => {
     <div className="min-h-screen text-slate-800 selection:bg-blue-200 selection:text-blue-900 flex flex-col relative overflow-x-hidden bg-[#f8fafc]">
       <ClockHeader />
       <SidebarMenu />
+      <ExamReminderModal />
       
       {/* Dynamic Background (Light Theme) */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
@@ -65,6 +68,11 @@ const App: React.FC = () => {
             
             <div className="col-span-1 md:col-span-6 h-full">
               <ImportantSchedule />
+            </div>
+
+            {/* Row 4: Exam Rules (Full Width) */}
+            <div className="col-span-1 md:col-span-12 h-full">
+              <ExamRules />
             </div>
         </div>
 
