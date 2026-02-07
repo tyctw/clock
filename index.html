@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>116會考倒數計時 | 2027年國中教育會考日期、考試日程與落點分析</title>
+    <meta name="title" content="116會考倒數計時 | 2027年國中教育會考日期、考試日程與落點分析">
+    <meta name="description" content="專為116會考（2027年國中教育會考）考生設計的倒數計時器。提供精準的會考日期倒數、考試日程表、每日勵志名言及會考落點分析資源。陪伴國三考生衝刺，金榜題名。">
+    <meta name="keywords" content="116會考, 116國中會考, 2027會考, 會考倒數, 國中教育會考, 會考日期, 會考日程, 落點分析, 國三生, 倒數計時器, 會考簡章">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="TYCTW Analyze">
+    <meta name="theme-color" content="#f8fafc">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cap-countdown-116.vercel.app/">
+    <meta property="og:title" content="116會考倒數計時 | 2027年國中教育會考">
+    <meta property="og:description" content="距離116年國中教育會考還有多久？提供最精美的倒數計時器、考試時程表與每日讀書激勵。">
+    <meta property="og:site_name" content="116會考倒數">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="116會考倒數計時 | 2027年國中教育會考">
+    <meta property="twitter:description" content="距離116年國中教育會考還有多久？提供最精美的倒數計時器、考試時程表與每日讀書激勵。">
+
+    <!-- Structured Data (JSON-LD) for Event and Application -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "116會考倒數計時器",
+          "operatingSystem": "Web Browser",
+          "applicationCategory": "EducationalApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "TWD"
+          }
+        },
+        {
+          "@type": "Event",
+          "name": "116年國中教育會考",
+          "startDate": "2027-05-22",
+          "endDate": "2027-05-23",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "location": {
+            "@type": "Place",
+            "name": "全台各考區考場",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "TW"
+            }
+          },
+          "description": "116學年度國中教育會考，考試科目包含國文、英語、數學、社會、自然及寫作測驗。"
+        }
+      ]
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'exam-dark': '#f8fafc',
+              'exam-blue': '#2563eb',
+              'exam-light': '#60a5fa',
+              'glass-border': 'rgba(255, 255, 255, 0.4)',
+              'glass-bg': 'rgba(255, 255, 255, 0.6)',
+            },
+            animation: {
+              'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+              'shimmer': 'shimmer 2.5s linear infinite',
+              'glow': 'glow 2s ease-in-out infinite alternate',
+              'fade-in': 'fadeIn 0.5s ease-out forwards',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              shimmer: {
+                '0%': { backgroundPosition: '-200% 0' },
+                '100%': { backgroundPosition: '200% 0' },
+              },
+              glow: {
+                '0%': { boxShadow: '0 0 10px rgba(59, 130, 246, 0.3)' },
+                '100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Noto Sans TC', sans-serif;
+        background-color: #f8fafc; /* Slate 50 */
+        color: #1e293b; /* Slate 800 */
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
