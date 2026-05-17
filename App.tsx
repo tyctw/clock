@@ -78,7 +78,7 @@ const App: React.FC = () => {
 
         <footer className="mt-16 sm:mt-24 mb-8 text-slate-400 text-sm text-center w-full pt-8 border-t border-slate-200/60">
           <div className="flex flex-col items-center gap-3">
-            <p className="font-semibold text-slate-500">© TYCTW 會考落點分析</p>
+            <p className="font-semibold text-slate-500">© TW 會考落點分析</p>
             <a href="mailto:tyctw.analyze@gmail.com" className="hover:text-blue-600 transition-colors duration-300">
               tyctw.analyze@gmail.com
             </a>
