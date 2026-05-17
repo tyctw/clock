@@ -3,7 +3,7 @@ import React from 'react';
 const schedule = [
   {
     day: "Day 1",
-    date: "116年5月22日 (星期六)",
+    date: "116年5月15日 (星期六)",
     accent: "text-blue-600",
     bg: "bg-white/60",
     events: [
@@ -15,7 +15,7 @@ const schedule = [
   },
   {
     day: "Day 2",
-    date: "116年5月23日 (星期日)",
+    date: "116年5月16日 (星期日)",
     accent: "text-sky-600",
     bg: "bg-white/60",
     events: [
