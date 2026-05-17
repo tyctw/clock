@@ -1,11 +1,11 @@
 import { ScheduleItem } from './types';
 
-// 116 CAP Date: May 22, 2027
+// 116 CAP Date: May 15, 2027
 // Exam starts at 08:30 AM with Social Studies
-export const TARGET_DATE = new Date('2027-05-22T08:30:00');
+export const TARGET_DATE = new Date('2027-05-15T08:30:00');
 
 export const EXAM_NAME = "116年國中教育會考";
-export const EXAM_DATES = "2027/05/22 ~ 05/23";
+export const EXAM_DATES = "2027/05/15 ~ 05/16";
 
 export const MOTIVATION_PROMPT = `
 你是一位溫暖且充滿智慧的學習導師。請為一位正在準備「116年國中教育會考」的台灣國中生，提供一句簡短、有力且具體的學習建議或心靈雞湯。
@@ -20,7 +20,7 @@ export const SCHEDULE_ITEMS: ScheduleItem[] = [
   { task: "國中會考寄發准考證", date: "待簡章公布" },
   { 
     task: "國中會考日期", 
-    date: "116年5月22日 ~ 5月23日", 
+    date: "116年5月15日 ~ 5月16日", 
     dateObj: TARGET_DATE,
     isHighlight: true 
   },
