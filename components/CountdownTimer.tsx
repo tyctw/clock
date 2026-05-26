@@ -32,84 +32,52 @@ const CountdownTimer: React.FC = () => {
 
   if (!mounted) return null;
 
-  // Configuration to match the visual style of the bento grid components below
   const timerBlocks = [
-    { 
-      value: timeLeft.days, 
-      label: "DAYS", 
-      // Main Blue Theme
-      containerClass: "border-blue-200/60 bg-blue-50/60",
-      textClass: "text-blue-600",
-      blobClass: "bg-blue-200",
-      labelDotClass: "bg-blue-500"
-    },
-    { 
-      value: timeLeft.hours, 
-      label: "HOURS", 
-      // Matches ImportantSchedule (Violet)
-      containerClass: "border-violet-200/60 bg-violet-50/60",
-      textClass: "text-violet-600",
-      blobClass: "bg-violet-200",
-      labelDotClass: "bg-violet-500"
-    },
-    { 
-      value: timeLeft.minutes, 
-      label: "MINUTES", 
-      // Matches ExamSchedule (Sky)
-      containerClass: "border-sky-200/60 bg-sky-50/60",
-      textClass: "text-sky-600",
-      blobClass: "bg-sky-200",
-      labelDotClass: "bg-sky-500"
-    },
-    { 
-      value: timeLeft.seconds, 
-      label: "SECONDS", 
-      // Matches NextEvent (Emerald) - Represents 'Now'
-      containerClass: "border-emerald-200/60 bg-emerald-50/60",
-      textClass: "text-emerald-600",
-      blobClass: "bg-emerald-200",
-      labelDotClass: "bg-emerald-500"
-    }
+    { value: timeLeft.days, label: "DAYS", dot: "bg-blue-500", glow: "bg-blue-300" },
+    { value: timeLeft.hours, label: "HOURS", dot: "bg-indigo-500", glow: "bg-indigo-300" },
+    { value: timeLeft.minutes, label: "MINUTES", dot: "bg-violet-500", glow: "bg-violet-300" },
+    { value: timeLeft.seconds, label: "SECONDS", dot: "bg-emerald-500", glow: "bg-emerald-300" }
   ];
 
   return (
-    <div className="w-full flex justify-center py-4 sm:py-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-            {timerBlocks.map((block, index) => (
-              <div 
-                key={block.label}
-                className={`
-                  relative group flex flex-col items-center justify-center
-                  w-36 h-36 sm:w-40 sm:h-40 md:w-40 md:h-40 lg:w-44 lg:h-44
-                  rounded-3xl backdrop-blur-md transition-all duration-500
-                  border shadow-sm
-                  hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02]
-                  overflow-hidden
-                  ${block.containerClass}
-                `}
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                 {/* Decorative background blobs to match card style */}
-                 <div className={`absolute -top-12 -right-12 w-24 h-24 rounded-full blur-2xl opacity-40 group-hover:opacity-60 transition-opacity ${block.blobClass}`}></div>
-                 <div className={`absolute -bottom-12 -left-12 w-24 h-24 rounded-full blur-2xl opacity-40 group-hover:opacity-60 transition-opacity ${block.blobClass}`}></div>
+    <div className="w-full flex justify-center py-4 sm:py-8 relative z-10">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 w-full max-w-4xl px-2 sm:px-4">
+        {timerBlocks.map((block, index) => (
+          <div key={block.label} className="relative group w-full" style={{ animationDelay: `${index * 100}ms` }}>
+            {/* Soft backdrop glow that intensifies on hover */}
+            <div className={`absolute inset-0 blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-700 rounded-3xl ${block.glow}`}></div>
+            
+            {/* Main Card Body */}
+            <div className="relative flex flex-col items-center justify-center py-8 sm:py-10 px-4 bg-white/70 backdrop-blur-2xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-[2rem] sm:rounded-[2.5rem] transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] overflow-hidden">
+               
+               {/* Inner top highlight for 3D glass effect */}
+               <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-90"></div>
+               <div className="absolute top-1 inset-x-0 h-[40%] bg-gradient-to-b from-white/60 to-transparent pointer-events-none rounded-t-[2.5rem]"></div>
+               
+               {/* Glowing dot indicator */}
+               <div className="absolute top-6 right-6 flex items-center justify-center">
+                  <div className={`absolute w-3 h-3 rounded-full ${block.glow} blur-sm opacity-80 animate-pulse`}></div>
+                  <div className={`relative w-2 h-2 rounded-full ${block.dot} shadow-[0_0_8px_currentColor] opacity-90`}></div>
+               </div>
 
-                 {/* Content */}
-                 <div className="relative z-10 flex flex-col items-center">
-                    <span className="text-5xl sm:text-6xl font-black text-slate-800 tracking-tight tabular-nums leading-none mb-2 group-hover:scale-110 transition-transform duration-300">
-                      {block.value.toString().padStart(2, '0')}
-                    </span>
-                    
-                    <div className="flex items-center gap-2">
-                      <div className={`w-1.5 h-1.5 rounded-full ${block.labelDotClass}`}></div>
-                      <span className={`text-xs font-bold tracking-[0.2em] uppercase ${block.textClass} opacity-80`}>
-                        {block.label}
-                      </span>
-                      <div className={`w-1.5 h-1.5 rounded-full ${block.labelDotClass}`}></div>
-                    </div>
-                 </div>
-              </div>
-            ))}
-        </div>
+               {/* Large Numbers */}
+               <div className="relative z-10 flex items-center justify-center mt-2">
+                 <span className="text-6xl sm:text-7xl md:text-8xl font-black tabular-nums tracking-tighter text-slate-800 drop-shadow-sm transition-transform duration-300 group-hover:scale-105">
+                   {block.value.toString().padStart(2, '0')}
+                 </span>
+               </div>
+
+               {/* Sub-label Container */}
+               <div className="mt-4 sm:mt-6 flex flex-col items-center gap-2 z-10">
+                 <span className="text-[11px] sm:text-xs font-extrabold tracking-[0.25em] uppercase text-slate-500/90 group-hover:text-slate-700 transition-colors duration-300">
+                   {block.label}
+                 </span>
+                 <div className={`w-4 h-0.5 rounded-full ${block.dot} opacity-40 group-hover:w-10 group-hover:opacity-100 transition-all duration-500`}></div>
+               </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
