@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motivationQuotes } from '../quotes';
+import { Sparkles, RefreshCw, Quote } from 'lucide-react';
 
 const MotivationCard: React.FC = () => {
   const [quote, setQuote] = useState<string>("");
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     const now = new Date();
@@ -20,46 +22,55 @@ const MotivationCard: React.FC = () => {
   }, []);
 
   const handleRandomQuote = () => {
-    const randomIndex = Math.floor(Math.random() * motivationQuotes.length);
-    setQuote(motivationQuotes[randomIndex]);
+    setIsAnimating(true);
+    setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * motivationQuotes.length);
+        setQuote(motivationQuotes[randomIndex]);
+        setIsAnimating(false);
+    }, 400); // Wait for fade out
   };
 
   return (
-    <div className="h-full w-full">
-      <div className="relative rounded-3xl p-8 sm:p-10 h-full flex flex-col justify-center items-center text-center overflow-hidden group hover:shadow-xl transition-all duration-500 border border-amber-200/60 bg-amber-50/60 backdrop-blur-md">
+    <div className="h-full w-full group">
+      <div className="relative rounded-[2rem] sm:rounded-[2.5rem] p-8 sm:p-10 h-full flex flex-col justify-between overflow-hidden bg-white/70 backdrop-blur-3xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500">
         
-        {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 p-8 opacity-10 text-amber-600">
-          <svg className="w-40 h-40 transform rotate-12 translate-x-10 -translate-y-10" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M14.017 21L14.017 18C14.017 16.8954 13.1216 16 12.017 16H9C9.00001 13.134 11.3333 11.1667 16 11V3C10 3 5 7.47715 5 13V21H14.017ZM24.017 21L24.017 18C24.017 16.8954 23.1216 16 22.017 16H19C19 13.134 21.3333 11.1667 26 11V3C20 3 15 7.47715 15 13V21H24.017Z" />
-          </svg>
+        {/* Decorative Gradients */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-amber-200/20 rounded-full blur-[80px] translate-x-1/2 -translate-y-1/2 transition-transform duration-1000 group-hover:scale-150"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-200/20 rounded-full blur-[80px] -translate-x-1/2 translate-y-1/2 transition-transform duration-1000 group-hover:scale-150"></div>
+        
+        {/* Subtle Watermark Icon */}
+        <div className="absolute top-10 right-10 opacity-[0.03] text-amber-900 transform rotate-12 transition-transform duration-700 group-hover:rotate-45 group-hover:scale-110 pointer-events-none">
+            <Quote size={180} />
         </div>
-        
-        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-amber-100/20 to-transparent"></div>
 
-        <div className="relative z-10 w-full flex flex-col items-center flex-grow justify-center">
-          <div className="inline-flex items-center gap-2 mb-6 px-3 py-1 rounded-full bg-white/60 border border-amber-200 text-amber-700 text-xs font-bold uppercase tracking-wider shadow-sm backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
-            Daily Inspiration
+        <div className="relative z-10 w-full flex flex-col justify-center flex-grow">
+          {/* Header Badge */}
+          <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-amber-50/80 border border-amber-100/80 text-amber-700 shadow-sm backdrop-blur-md self-start">
+            <Sparkles className="w-4 h-4 text-amber-500" />
+            <span className="text-[11px] font-extrabold uppercase tracking-widest mt-0.5">Daily Inspiration</span>
           </div>
 
-          <div className="flex-grow flex items-center justify-center mb-8 w-full">
-            <p className="text-xl sm:text-2xl md:text-3xl text-slate-800 font-serif leading-relaxed italic animate-fade-in relative px-4 sm:px-8 max-w-2xl drop-shadow-sm">
+          {/* Quote Content */}
+          <div className="relative flex-grow flex items-center mb-10 w-full min-h-[120px]">
+             {/* Left accent line */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1/2 bg-gradient-to-b from-amber-300 to-orange-400 rounded-full opacity-50 group-hover:h-full group-hover:opacity-100 transition-all duration-700"></div>
+            
+            <p className={`text-2xl sm:text-3xl md:text-4xl text-slate-800 font-serif leading-snug tracking-wide italic pl-8 drop-shadow-sm transition-opacity duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
               {quote || "正在為你尋找力量..."}
             </p>
           </div>
-
-          <button
-            onClick={handleRandomQuote}
-            className="group relative inline-flex items-center justify-center px-8 py-3 text-sm font-bold text-white bg-slate-800 rounded-full hover:bg-slate-700 transition-all duration-300 shadow-lg hover:shadow-slate-500/30 overflow-hidden"
-          >
-            <span className="relative flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform group-hover:rotate-180 duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-              抽取今日籤詩
-            </span>
-          </button>
+        </div>
+        
+        {/* Action Button */}
+        <div className="relative z-10 border-t border-slate-200/60 pt-6">
+            <button
+                onClick={handleRandomQuote}
+                className="group/btn relative w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-4 text-sm font-bold text-slate-700 bg-white border border-slate-200/80 rounded-2xl hover:bg-slate-50 hover:text-amber-600 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 overflow-hidden"
+            >
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-50/0 via-amber-100/30 to-amber-50/0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000"></div>
+                <RefreshCw className={`w-4 h-4 transition-transform duration-500 ${isAnimating ? 'animate-spin' : 'group-hover/btn:rotate-180'}`} />
+                <span className="tracking-widest">抽取今日籤詩</span>
+            </button>
         </div>
       </div>
     </div>
