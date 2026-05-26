@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SCHEDULE_ITEMS } from '../constants';
 import { ScheduleItem } from '../types';
+import { Calendar, Clock, ArrowRight } from 'lucide-react';
 
 const NextEvent: React.FC = () => {
   const [nextEvent, setNextEvent] = useState<ScheduleItem | null>(null);
@@ -37,48 +38,51 @@ const NextEvent: React.FC = () => {
   if (!nextEvent || !timeLeft) return null;
 
   return (
-    <div className="h-full w-full">
-      <div className="rounded-3xl p-6 sm:p-8 h-full flex flex-col justify-between relative overflow-hidden group hover:shadow-xl transition-all duration-300 border border-emerald-200/60 bg-emerald-50/60 backdrop-blur-md">
+    <div className="h-full w-full group">
+      <div className="relative rounded-[2rem] sm:rounded-[2.5rem] p-8 h-full flex flex-col justify-between overflow-hidden bg-white/70 backdrop-blur-3xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500">
         
-        {/* Background Accent */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-200/40 rounded-full blur-3xl transform translate-x-10 -translate-y-10"></div>
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-emerald-100/40 rounded-full blur-2xl transform -translate-x-5 translate-y-5"></div>
+        {/* Background Blur Accents */}
+        <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-300/20 rounded-full blur-[60px] translate-x-1/3 -translate-y-1/3 transition-transform duration-700 group-hover:scale-150"></div>
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-emerald-400/10 rounded-full blur-[60px] -translate-x-1/3 translate-y-1/3 transition-transform duration-700 group-hover:scale-150"></div>
 
-        <div className="relative z-10">
-            <div className="flex items-center gap-2 mb-4">
-                <div className="flex h-8 w-8 rounded-full bg-emerald-100 border border-emerald-200 items-center justify-center text-emerald-600 shadow-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </div>
-                <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">Upcoming Event</span>
+        <div className="relative z-10 flex flex-col items-start">
+            <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm backdrop-blur-sm">
+                <Calendar className="w-4 h-4" />
+                <span className="text-[11px] font-extrabold uppercase tracking-widest mt-0.5">Upcoming Event</span>
             </div>
             
-            <h3 className="text-2xl sm:text-3xl font-black text-slate-800 leading-tight mb-2 tracking-tight">
+            <h3 className="text-3xl sm:text-4xl font-black text-slate-800 leading-none mb-3 tracking-tight group-hover:text-emerald-700 transition-colors duration-300">
                 {nextEvent.task}
             </h3>
-            <p className="text-emerald-800/70 font-medium">{nextEvent.date}</p>
+            <p className="text-emerald-600/80 font-medium tracking-wide flex items-center gap-2">
+                {nextEvent.date}
+            </p>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-emerald-200/50 flex items-center justify-between relative z-10">
-            <div className="flex flex-col">
-                <span className="text-[10px] text-emerald-600/80 uppercase font-bold mb-1 tracking-wider">Time Remaining</span>
-                <div className="flex items-baseline gap-1">
-                     <span className="text-4xl font-black text-emerald-600 tabular-nums">{timeLeft.days}</span>
-                     <span className="text-sm font-bold text-emerald-700/60">天</span>
-                </div>
+        <div className="mt-10 pt-8 border-t border-slate-200/60 relative z-10">
+            <div className="flex items-center gap-2 mb-4">
+                <Clock className="w-4 h-4 text-slate-400" />
+                <span className="text-xs text-slate-500 uppercase font-bold tracking-[0.2em]">Time Remaining</span>
             </div>
-             <div className="flex items-center gap-3 bg-white/40 rounded-xl px-4 py-2 shadow-sm border border-white/50 backdrop-blur-sm">
-                <div className="text-center">
-                    <span className="block text-xl font-bold text-emerald-900 tabular-nums leading-none">{timeLeft.hours}</span>
-                    <span className="text-[10px] text-emerald-600/70 font-bold uppercase">Hrs</span>
+            
+            <div className="flex items-end justify-between">
+                <div className="flex items-baseline gap-2">
+                     <span className="text-6xl sm:text-7xl font-black text-slate-800 tabular-nums tracking-tighter drop-shadow-sm group-hover:text-emerald-600 transition-colors duration-300">{timeLeft.days}</span>
+                     <span className="text-lg font-bold text-slate-400">天</span>
                 </div>
-                <div className="w-px h-6 bg-emerald-200/50"></div>
-                <div className="text-center">
-                    <span className="block text-xl font-bold text-emerald-900 tabular-nums leading-none">{timeLeft.minutes}</span>
-                    <span className="text-[10px] text-emerald-600/70 font-bold uppercase">Min</span>
-                </div>
-             </div>
+                 
+                <div className="flex items-center gap-4 bg-slate-50/80 rounded-2xl px-5 py-3 border border-slate-100/80 backdrop-blur-md shadow-inner">
+                    <div className="flex flex-col items-center">
+                        <span className="text-2xl font-black text-slate-700 tabular-nums leading-none">{timeLeft.hours}</span>
+                        <span className="text-[10px] text-slate-400 font-bold uppercase mt-1 tracking-wider">Hrs</span>
+                    </div>
+                    <div className="w-px h-8 bg-slate-200"></div>
+                    <div className="flex flex-col items-center">
+                        <span className="text-2xl font-black text-slate-700 tabular-nums leading-none">{timeLeft.minutes}</span>
+                        <span className="text-[10px] text-slate-400 font-bold uppercase mt-1 tracking-wider">Min</span>
+                    </div>
+                 </div>
+            </div>
         </div>
       </div>
     </div>
