@@ -71,8 +71,8 @@ const SidebarMenu: React.FC = () => {
     <>
       {/* New Toggle Button Design */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`fixed top-4 right-4 sm:top-6 sm:right-6 z-[60] flex items-center gap-2 pl-3 pr-2 py-2 rounded-full backdrop-blur-xl transition-all duration-300 border shadow-lg hover:shadow-xl group ${
+        onClick={() => setIsOpen(prev => !prev)}
+        className={`fixed top-4 right-4 sm:top-6 sm:right-6 z-[100] flex items-center gap-2 pl-3 pr-2 py-2 rounded-full backdrop-blur-xl transition-all duration-300 border shadow-lg hover:shadow-xl group ${
           isOpen 
             ? 'bg-slate-800 text-white border-slate-700 hover:bg-slate-700' 
             : 'bg-white/80 text-slate-700 border-white/60 hover:bg-white hover:text-blue-600'
