@@ -2,7 +2,7 @@ import React from 'react';
 import { Target, MapPin, ChevronRight, Sparkles } from 'lucide-react';
 
 const regions = [
-  "基北區", "桃聯區", "中投區", "彰化區", "台南區", "高雄區"
+  "基北區", "桃聯區", "中投區", "彰化區", "台南區", "高雄區", "竹苗區"
 ];
 
 const PlacementAnalysis: React.FC = () => {
