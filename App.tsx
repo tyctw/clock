@@ -4,11 +4,11 @@ import MotivationCard from './components/MotivationCard';
 import ExamSchedule from './components/ExamSchedule';
 import ImportantSchedule from './components/ImportantSchedule';
 import SidebarMenu from './components/SidebarMenu';
-import AdBanner from './components/AdBanner';
 import NextEvent from './components/NextEvent';
 import ClockHeader from './components/ClockHeader';
 import ExamRules from './components/ExamRules';
 import ExamReminderModal from './components/ExamReminderModal';
+import PlacementAnalysis from './components/PlacementAnalysis';
 import { EXAM_NAME, EXAM_DATES, TARGET_DATE } from './constants';
 
 const App: React.FC = () => {
@@ -56,9 +56,9 @@ const App: React.FC = () => {
                <MotivationCard />
             </div>
 
-            {/* Row 2: Ad Banner (Full Width) */}
+            {/* Row 2: Placement Analysis (Full Width) */}
             <div className="col-span-1 md:col-span-12">
-               <AdBanner />
+               <PlacementAnalysis />
             </div>
 
             {/* Row 3: Schedules */}
@@ -70,7 +70,7 @@ const App: React.FC = () => {
               <ImportantSchedule />
             </div>
 
-            {/* Row 4: Exam Rules (Full Width) */}
+            {/* Row 5: Exam Rules (Full Width) */}
             <div className="col-span-1 md:col-span-12 h-full">
               <ExamRules />
             </div>
@@ -78,7 +78,7 @@ const App: React.FC = () => {
 
         <footer className="mt-16 sm:mt-24 mb-8 text-slate-400 text-sm text-center w-full pt-8 border-t border-slate-200/60">
           <div className="flex flex-col items-center gap-3">
-            <p className="font-semibold text-slate-500">© TW 會考落點分析</p>
+            <p className="font-semibold text-slate-500">© TYCTW 會考落點分析</p>
             <a href="mailto:tyctw.analyze@gmail.com" className="hover:text-blue-600 transition-colors duration-300">
               tyctw.analyze@gmail.com
             </a>
