@@ -31,8 +31,20 @@ const NextEvent: React.FC = () => {
     };
 
     calculateNextEvent();
-    const timer = setInterval(calculateNextEvent, 1000); 
-    return () => clearInterval(timer);
+    let timeoutId: ReturnType<typeof setTimeout>;
+    
+    const tick = () => {
+      calculateNextEvent();
+      const now = Date.now();
+      const delay = 1000 - (now % 1000);
+      timeoutId = setTimeout(tick, delay);
+    };
+
+    const now = Date.now();
+    const delay = 1000 - (now % 1000);
+    timeoutId = setTimeout(tick, delay);
+
+    return () => clearTimeout(timeoutId);
   }, []);
 
   if (!nextEvent || !timeLeft) return null;

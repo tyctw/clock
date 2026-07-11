@@ -23,11 +23,20 @@ const CountdownTimer: React.FC = () => {
 
   useEffect(() => {
     setMounted(true);
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
+    let timeoutId: ReturnType<typeof setTimeout>;
 
-    return () => clearInterval(timer);
+    const tick = () => {
+      setTimeLeft(calculateTimeLeft());
+      const now = Date.now();
+      const delay = 1000 - (now % 1000);
+      timeoutId = setTimeout(tick, delay);
+    };
+
+    const now = Date.now();
+    const delay = 1000 - (now % 1000);
+    timeoutId = setTimeout(tick, delay);
+
+    return () => clearTimeout(timeoutId);
   }, []);
 
   if (!mounted) return null;
