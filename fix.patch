@@ -1,0 +1,19 @@
+--- App.tsx
++++ App.tsx
+@@ -95,8 +95,12 @@
+                   <h3 className="text-xl font-black text-slate-800 tracking-tight mb-2 group-hover:text-rose-700 transition-colors">重要考試規則與違規行為</h3>
+                   <p className="text-sm font-medium text-slate-500 leading-relaxed">考試前務必詳細閱讀，避免無謂失分。</p>
+                 </div>
++                <div className="shrink-0 w-10 h-10 rounded-full bg-rose-100/50 flex items-center justify-center text-rose-600 group-hover:bg-rose-600 group-hover:text-white transition-colors duration-300">
++                  <ArrowRight className="w-5 h-5" />
++                </div>
++             </div>
+           </Link>
+         </div>
+-        {/* Row 6: AdBanner (Full Width) */}
+-        <div className="col-span-1 lg:col-span-12 mt-4">
+-           <AdBanner />
+-        </div>
+     </div>
+   </>
+ );
