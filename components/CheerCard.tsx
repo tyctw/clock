@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircleHeart, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 
 interface Cheer {
   id: number;
@@ -13,14 +14,23 @@ const CheerCard: React.FC = () => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    fetch('/api/cheers')
-      .then(res => res.json())
-      .then(data => {
-          if (data && data.length > 0) {
-              setCheers(data);
-          }
-      })
-      .catch(err => console.error(err));
+    const fetchCheers = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('cheers')
+          .select('id, message')
+          .order('created_at', { ascending: false })
+          .limit(10);
+        
+        if (error) throw error;
+        if (data && data.length > 0) {
+          setCheers(data);
+        }
+      } catch (err) {
+        console.error('Failed to fetch cheers:', err);
+      }
+    };
+    fetchCheers();
   }, []);
 
   useEffect(() => {
