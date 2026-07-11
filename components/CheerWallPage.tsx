@@ -194,11 +194,11 @@ export const CheerWallPage: React.FC = () => {
 
   // Color palettes for the sticky notes
   const cardStyles = [
-    { bg: 'from-amber-100 via-orange-200 to-orange-400', border: 'border-orange-500/30 border-b-orange-700/40', text: 'text-orange-950', accent: 'bg-orange-500', icon: 'text-orange-400', quote: 'text-orange-200' },
-    { bg: 'from-rose-100 via-rose-300 to-rose-500', border: 'border-rose-500/30 border-b-rose-700/40', text: 'text-rose-950', accent: 'bg-rose-500', icon: 'text-rose-400', quote: 'text-rose-200' },
-    { bg: 'from-yellow-50 via-amber-200 to-amber-400', border: 'border-amber-500/30 border-b-amber-700/40', text: 'text-amber-950', accent: 'bg-amber-500', icon: 'text-amber-400', quote: 'text-amber-200' },
-    { bg: 'from-red-100 via-red-300 to-red-500', border: 'border-red-500/30 border-b-red-700/40', text: 'text-red-950', accent: 'bg-red-500', icon: 'text-red-400', quote: 'text-red-200' },
-    { bg: 'from-orange-50 via-amber-300 to-orange-500', border: 'border-orange-500/30 border-b-orange-700/40', text: 'text-orange-950', accent: 'bg-orange-500', icon: 'text-orange-400', quote: 'text-orange-200' },
+    { bg: 'bg-blue-50/80', border: 'border-blue-100', text: 'text-slate-700', accent: 'text-blue-500', tag: 'bg-blue-100 text-blue-700' },
+    { bg: 'bg-emerald-50/80', border: 'border-emerald-100', text: 'text-slate-700', accent: 'text-emerald-500', tag: 'bg-emerald-100 text-emerald-700' },
+    { bg: 'bg-rose-50/80', border: 'border-rose-100', text: 'text-slate-700', accent: 'text-rose-500', tag: 'bg-rose-100 text-rose-700' },
+    { bg: 'bg-amber-50/80', border: 'border-amber-100', text: 'text-slate-700', accent: 'text-amber-500', tag: 'bg-amber-100 text-amber-700' },
+    { bg: 'bg-indigo-50/80', border: 'border-indigo-100', text: 'text-slate-700', accent: 'text-indigo-500', tag: 'bg-indigo-100 text-indigo-700' },
   ];
 
   return (
@@ -307,43 +307,29 @@ export const CheerWallPage: React.FC = () => {
               const style = cardStyles[index % cardStyles.length];
               
               return (
-                <div key={cheer.id} className="relative flex flex-col items-center justify-end group transition-all duration-500 transform hover:-translate-y-4">
-                  {/* Fire glow & Base */}
-                  <div className="absolute -bottom-4 animate-pulse opacity-80 group-hover:opacity-100 transition-opacity">
-                    <Flame className="w-10 h-10 text-yellow-300 fill-yellow-400 drop-shadow-[0_0_15px_rgba(253,224,71,0.8)]" />
-                  </div>
-                  <div className="w-16 h-10 bg-gradient-to-t from-orange-500 to-yellow-200 rounded-full blur-xl absolute -bottom-6 animate-pulse opacity-60"></div>
-                  
-                  {/* Lantern Body */}
-                  <div className={`relative w-full overflow-hidden bg-gradient-to-b ${style.bg} border ${style.border} rounded-t-[40px] rounded-b-2xl p-6 sm:p-8 shadow-[0_10px_30px_rgba(245,158,11,0.3)] hover:shadow-[0_20px_40px_rgba(245,158,11,0.5)] transition-all duration-500 flex flex-col h-full z-10 mb-2 border-b-8`}>
-                      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full blur-3xl mix-blend-overlay pointer-events-none"></div>
-
-                      <div className="relative z-10 flex-grow flex flex-col min-h-[8rem]">
-                         <p className={`font-black text-xl sm:text-2xl ${style.text} leading-relaxed tracking-widest text-center flex-grow flex items-center justify-center break-words drop-shadow-sm`}>
+                <div key={cheer.id} className={`relative flex flex-col group transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg ${style.bg} border border-slate-100 rounded-3xl p-6 sm:p-8 overflow-hidden h-full z-10`}>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/40 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none transition-transform duration-700 group-hover:scale-150"></div>
+                    
+                    <div className="relative z-10 flex-grow flex flex-col min-h-[6rem]">
+                        <Quote className={`w-8 h-8 mb-4 opacity-20 ${style.accent}`} />
+                        <p className={`font-semibold text-lg sm:text-xl ${style.text} leading-relaxed tracking-wide flex-grow break-words`}>
                             {cheer.message}
-                         </p>
-                      </div>
-                      
-                      <div className="mt-6 flex items-center justify-between relative z-10 border-t border-black/5 pt-4">
-                         <div className="flex items-center gap-2">
-                             <div className={`w-6 h-6 rounded-full ${style.accent} bg-opacity-20 flex items-center justify-center`}>
-                                 <MessageCircleHeart className={`w-3 h-3 ${style.icon}`} />
-                             </div>
-                             <span className={`text-xs font-bold ${style.text} opacity-80`}>
-                                 匿名祝福
-                             </span>
-                         </div>
-                         <span className={`text-xs font-bold ${style.text} opacity-60 tracking-wider`}>
-                           {new Date(cheer.createdAt).toLocaleDateString('zh-TW', { month: 'short', day: 'numeric' })}
-                         </span>
-                      </div>
-                  </div>
-                  
-                  {/* Lantern Base structure */}
-                  <div className="w-2/3 h-3 bg-amber-900 rounded-b-lg relative z-0 shadow-lg">
-                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-1.5 bg-amber-950/50"></div>
-                  </div>
+                        </p>
+                    </div>
+                    
+                    <div className="mt-8 flex items-center justify-between relative z-10">
+                        <div className="flex items-center gap-3">
+                            <div className={`w-8 h-8 rounded-full bg-white/60 shadow-sm flex items-center justify-center`}>
+                                <MessageCircleHeart className={`w-4 h-4 ${style.accent}`} />
+                            </div>
+                            <span className={`text-sm font-bold ${style.text} opacity-90`}>
+                                匿名祝福
+                            </span>
+                        </div>
+                        <span className={`text-xs font-medium ${style.text} opacity-60`}>
+                            {new Date(cheer.createdAt).toLocaleDateString('zh-TW', { month: 'short', day: 'numeric' })}
+                        </span>
+                    </div>
                 </div>
               );
             })
