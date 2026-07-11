@@ -1,11 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Send, Sparkles, MessageCircleHeart, Quote, Flame, X } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 interface Cheer {
   id: number;
   message: string;
   createdAt: string;
+}
+
+const FORBIDDEN_WORDS = [
+  '幹', '靠北', '白痴', '智障', '死', '去死', '廢物', '垃圾', '操', '媽的', '賤', '王八', '婊', '妓', '屌', '雞掰', '笨蛋', '智障', '白爛'
+];
+
+function checkContentSafety(message: string): boolean {
+  for (const word of FORBIDDEN_WORDS) {
+    if (message.includes(word)) {
+      return false;
+    }
+  }
+  return true;
 }
 
 const LanternRitualModal: React.FC<{ message: string; onComplete: () => void; onCancel: () => void }> = ({ message, onComplete, onCancel }) => {
@@ -100,10 +114,18 @@ export const CheerWallPage: React.FC = () => {
 
   const fetchCheers = async () => {
     try {
-      const res = await fetch('/api/cheers');
-      if (res.ok) {
-        const data = await res.json();
-        setCheers(data);
+      const { data, error } = await supabase
+        .from('cheers')
+        .select('id, message, created_at')
+        .order('created_at', { ascending: false })
+        .limit(50);
+      if (error) throw error;
+      if (data) {
+        setCheers(data.map(item => ({
+          id: item.id,
+          message: item.message,
+          createdAt: item.created_at
+        })));
       }
     } catch (err) {
       console.error("Failed to fetch cheers:", err);
@@ -112,11 +134,12 @@ export const CheerWallPage: React.FC = () => {
 
   const fetchStats = async () => {
     try {
-      const res = await fetch('/api/cheers/stats');
-      if (res.ok) {
-        const data = await res.json();
-        setStats(data);
-      }
+      const { count: totalCount } = await supabase.from('cheers').select('*', { count: 'exact', head: true });
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const { count: todayCount } = await supabase.from('cheers').select('*', { count: 'exact', head: true }).gte('created_at', today.toISOString());
+      
+      setStats({ total: totalCount || 0, today: todayCount || 0 });
     } catch (err) {
       console.error("Failed to fetch stats:", err);
     }
@@ -138,23 +161,27 @@ export const CheerWallPage: React.FC = () => {
     setIsSubmitting(true);
     setErrorMsg(null);
     try {
-      const res = await fetch('/api/cheers', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ message: ritualState.message })
-      });
+      const truncatedMessage = ritualState.message.substring(0, 100);
+      if (!checkContentSafety(truncatedMessage)) {
+        setErrorMsg('留言包含不適當內容，請修改後再送出。');
+        setIsSubmitting(false);
+        setRitualState({ show: false, message: '' });
+        return;
+      }
 
-      if (res.ok) {
-        const newCheer = await res.json();
+      const { data, error } = await supabase
+        .from('cheers')
+        .insert([{ message: truncatedMessage, ip_address: 'client', user_agent: navigator.userAgent }])
+        .select()
+        .single();
+
+      if (error) throw error;
+      if (data) {
+        const newCheer = { id: data.id, message: data.message, createdAt: data.created_at };
         setCheers(prev => [newCheer, ...prev].slice(0, 50));
         fetchStats();
         setMessage('');
         setIsAgreed(false);
-      } else {
-        const data = await res.json();
-        setErrorMsg(data.error || '發送失敗，請稍後再試');
       }
     } catch (err) {
       console.error("Failed to post cheer:", err);
