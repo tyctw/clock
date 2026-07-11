@@ -33,50 +33,60 @@ const CountdownTimer: React.FC = () => {
   if (!mounted) return null;
 
   const timerBlocks = [
-    { value: timeLeft.days, label: "DAYS", dot: "bg-blue-500", glow: "bg-blue-300" },
-    { value: timeLeft.hours, label: "HOURS", dot: "bg-indigo-500", glow: "bg-indigo-300" },
-    { value: timeLeft.minutes, label: "MINUTES", dot: "bg-violet-500", glow: "bg-violet-300" },
-    { value: timeLeft.seconds, label: "SECONDS", dot: "bg-emerald-500", glow: "bg-emerald-300" }
+    { value: timeLeft.days, label: "天 DAYS", color: "from-blue-500 to-indigo-600" },
+    { value: timeLeft.hours, label: "時 HOURS", color: "from-indigo-500 to-violet-600" },
+    { value: timeLeft.minutes, label: "分 MINUTES", color: "from-violet-500 to-purple-600" },
+    { value: timeLeft.seconds, label: "秒 SECONDS", color: "from-purple-500 to-pink-600" }
   ];
 
   return (
-    <div className="w-full flex justify-center py-4 sm:py-8 relative z-10">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 w-full max-w-4xl px-2 sm:px-4">
-        {timerBlocks.map((block, index) => (
-          <div key={block.label} className="relative group w-full" style={{ animationDelay: `${index * 100}ms` }}>
-            {/* Soft backdrop glow that intensifies on hover */}
-            <div className={`absolute inset-0 blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-700 rounded-3xl ${block.glow}`}></div>
-            
-            {/* Main Card Body */}
-            <div className="relative flex flex-col items-center justify-center py-8 sm:py-10 px-4 bg-white/70 backdrop-blur-2xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-[2rem] sm:rounded-[2.5rem] transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] overflow-hidden">
-               
-               {/* Inner top highlight for 3D glass effect */}
-               <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-90"></div>
-               <div className="absolute top-1 inset-x-0 h-[40%] bg-gradient-to-b from-white/60 to-transparent pointer-events-none rounded-t-[2.5rem]"></div>
-               
-               {/* Glowing dot indicator */}
-               <div className="absolute top-6 right-6 flex items-center justify-center">
-                  <div className={`absolute w-3 h-3 rounded-full ${block.glow} blur-sm opacity-80 animate-pulse`}></div>
-                  <div className={`relative w-2 h-2 rounded-full ${block.dot} shadow-[0_0_8px_currentColor] opacity-90`}></div>
-               </div>
+    <div className="w-full flex justify-center py-6 sm:py-10 relative z-10">
+      <div className="sr-only" aria-live="polite">
+        距離會考還有 {timeLeft.days} 天 {timeLeft.hours} 小時 {timeLeft.minutes} 分鐘 {timeLeft.seconds} 秒
+      </div>
+      
+      {/* Main Glass Container */}
+      <div className="relative group w-full max-w-5xl mx-4 sm:mx-auto" aria-hidden="true">
+        {/* Glow backdrop */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-1000 rounded-[3rem]"></div>
+        
+        <div className="relative flex flex-col items-center py-10 px-6 sm:py-14 sm:px-12 bg-white/80 backdrop-blur-2xl border border-white/60 shadow-[0_8px_40px_rgb(0,0,0,0.06)] rounded-[2.5rem] sm:rounded-[3rem] overflow-hidden transition-transform duration-500 hover:shadow-[0_16px_60px_rgb(0,0,0,0.1)]">
+          
+          {/* Inner Light Glare */}
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-100"></div>
+          <div className="absolute top-1 inset-x-0 h-32 bg-gradient-to-b from-white/80 to-transparent pointer-events-none rounded-t-[3rem]"></div>
 
-               {/* Large Numbers */}
-               <div className="relative z-10 flex items-center justify-center mt-2">
-                 <span className="text-6xl sm:text-7xl md:text-8xl font-black tabular-nums tracking-tighter text-slate-800 drop-shadow-sm transition-transform duration-300 group-hover:scale-105">
-                   {block.value.toString().padStart(2, '0')}
-                 </span>
-               </div>
+          <div className="flex flex-wrap sm:flex-nowrap items-center justify-center gap-6 sm:gap-4 md:gap-8 lg:gap-12 w-full z-10">
+            {timerBlocks.map((block, index) => (
+              <React.Fragment key={block.label}>
+                <div className="flex flex-col items-center min-w-[80px] sm:min-w-[100px] lg:min-w-[140px] group/block">
+                  <div className="relative flex items-center justify-center overflow-hidden">
+                     {/* The Number */}
+                     <span className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tabular-nums tracking-tighter text-slate-800 drop-shadow-sm group-hover/block:-translate-y-1 transition-transform duration-500">
+                       {block.value.toString().padStart(2, '0')}
+                     </span>
+                  </div>
+                  {/* Label */}
+                  <div className="mt-4 sm:mt-6 flex flex-col items-center gap-2">
+                    <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] text-slate-500/80 uppercase">
+                      {block.label}
+                    </span>
+                    <div className={`w-3 h-1 rounded-full bg-gradient-to-r ${block.color} opacity-50 group-hover/block:w-8 group-hover/block:opacity-100 transition-all duration-500`}></div>
+                  </div>
+                </div>
 
-               {/* Sub-label Container */}
-               <div className="mt-4 sm:mt-6 flex flex-col items-center gap-2 z-10">
-                 <span className="text-[11px] sm:text-xs font-extrabold tracking-[0.25em] uppercase text-slate-500/90 group-hover:text-slate-700 transition-colors duration-300">
-                   {block.label}
-                 </span>
-                 <div className={`w-4 h-0.5 rounded-full ${block.dot} opacity-40 group-hover:w-10 group-hover:opacity-100 transition-all duration-500`}></div>
-               </div>
-            </div>
+                {/* Separator Colons (hidden on mobile, visible on sm+) */}
+                {index < timerBlocks.length - 1 && (
+                  <div className="hidden sm:flex flex-col gap-3 lg:gap-5 pb-8 sm:pb-12 text-slate-300">
+                    <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-slate-200/80 shadow-sm"></div>
+                    <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-slate-200/80 shadow-sm"></div>
+                  </div>
+                )}
+              </React.Fragment>
+            ))}
           </div>
-        ))}
+          
+        </div>
       </div>
     </div>
   );

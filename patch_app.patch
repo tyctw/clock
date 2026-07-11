@@ -1,0 +1,30 @@
+--- App.tsx
++++ App.tsx
+@@ -17,7 +17,7 @@
+ import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
+ import { CheerWallPage } from './components/CheerWallPage';
+ import { EXAM_NAME, EXAM_DATES, TARGET_DATE } from './constants';
+-import { ShieldAlert, ArrowRight, ArrowLeft, Clock } from 'lucide-react';
++import { ShieldAlert, ArrowRight, ArrowLeft, Clock, MessageSquareHeart, Target } from 'lucide-react';
+ 
+ // Scroll to top on route change
+ const ScrollToTop = () => {
+@@ -39,6 +39,18 @@
+       <div className="w-full max-w-5xl mx-auto flex justify-center mb-10">
+          <CountdownTimer />
+       </div>
++
++      <div className="flex flex-wrap justify-center gap-4 mb-2">
++        <Link to="/cheer-wall" className="px-6 py-3 rounded-full bg-orange-100 text-orange-600 font-bold hover:bg-orange-200 transition-colors shadow-sm flex items-center gap-2">
++           <MessageSquareHeart className="w-5 h-5" />
++           加油牆
++        </Link>
++        <a href="https://tyctw.github.io/spare/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-full bg-blue-100 text-blue-600 font-bold hover:bg-blue-200 transition-colors shadow-sm flex items-center gap-2">
++           <Target className="w-5 h-5" />
++           會考落點分析
++        </a>
++      </div>
++
+     </header>
+ 
+     {/* Bento Grid Layout */}

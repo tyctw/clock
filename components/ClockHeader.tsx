@@ -10,7 +10,7 @@ const ClockHeader: React.FC = () => {
     
     const calculateDays = () => {
         const diff = +TARGET_DATE - +new Date();
-        return Math.ceil(diff / (1000 * 60 * 60 * 24));
+        return diff > 0 ? Math.floor(diff / (1000 * 60 * 60 * 24)) : 0;
     };
     setDaysLeft(calculateDays());
 

@@ -1,0 +1,27 @@
+--- components/CheerWallPage.tsx
++++ components/CheerWallPage.tsx
+@@ -43,7 +43,7 @@
+            ))}
+         </div>
+ 
+-        <button onClick={onCancel} className={`absolute top-8 right-8 text-slate-400 hover:text-white transition-colors z-50 ${phase !== 'ready' ? 'hidden' : ''}`}>
++        <button onClick={onCancel} aria-label="取消" className={`absolute top-8 right-8 text-slate-400 hover:text-white transition-colors z-50 ${phase !== 'ready' ? 'hidden' : ''}`}>
+            <X className="w-8 h-8" />
+         </button>
+ 
+@@ -214,6 +214,7 @@
+               }}
+               placeholder="寫下你的加油留言... (例如：116會考加油！我們頂峰相見！)"
+               maxLength={100}
++              aria-label="寫下你的加油留言"
+               className="w-full bg-transparent border-none px-6 py-4 text-slate-700 font-medium placeholder:text-slate-400 focus:outline-none focus:ring-0"
+               disabled={isSubmitting}
+             />
+@@ -231,6 +232,7 @@
+                     <input
+                       type="checkbox"
+                       checked={isAgreed}
++                      aria-label="我同意留言不包含任何不適當、攻擊性或負面的詞彙"
+                       onChange={(e) => {
+                         setIsAgreed(e.target.checked);
+                         if (errorMsg) setErrorMsg(null);

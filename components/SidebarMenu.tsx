@@ -31,47 +31,13 @@ const SidebarMenu: React.FC = () => {
     };
   }, [isOpen]);
 
-  const handleGoogleCalendar = () => {
-    // 2027/05/22 08:30 (UTC+8) -> 2027-05-22 00:30 UTC
-    // 2027/05/23 17:00 (UTC+8) -> 2027-05-23 09:00 UTC
-    const start = "20270522T003000Z";
-    const end = "20270523T090000Z";
-    const text = encodeURIComponent(EXAM_NAME);
-    const details = encodeURIComponent("考試日程：社會、數學、國文、寫作、自然、英語。\n\n加油！堅持到底！\n\n*時間僅供參考，請以官方簡章為準。");
-    const location = encodeURIComponent("全台各考區");
-    
-    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${start}/${end}&details=${details}&location=${location}`;
-    window.open(url, '_blank');
-  };
-
-  const handleDownloadICS = () => {
-    const event = [
-      "BEGIN:VCALENDAR",
-      "VERSION:2.0",
-      "BEGIN:VEVENT",
-      "DTSTART:20270522T003000Z",
-      "DTEND:20270523T090000Z",
-      "SUMMARY:116年國中教育會考",
-      "DESCRIPTION:考試日程：社會、數學、國文、寫作、自然、英語。加油！(時間僅供參考，以簡章為準)",
-      "LOCATION:全台各考區",
-      "END:VEVENT",
-      "END:VCALENDAR"
-    ].join("\n");
-
-    const blob = new Blob([event], { type: 'text/calendar;charset=utf-8' });
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', '116_cap_exam.ics');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <>
       {/* New Toggle Button Design */}
       <button
         onClick={() => setIsOpen(prev => !prev)}
+        aria-expanded={isOpen}
+        aria-controls="mobile-menu"
         className={`fixed top-4 right-4 sm:top-6 sm:right-6 z-[100] flex items-center gap-2 pl-3 pr-2 py-2 rounded-full backdrop-blur-xl transition-all duration-300 border shadow-lg hover:shadow-xl group ${
           isOpen 
             ? 'bg-slate-800 text-white border-slate-700 hover:bg-slate-700' 
@@ -106,44 +72,15 @@ const SidebarMenu: React.FC = () => {
 
       {/* Drawer */}
       <div
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="導覽選單"
         className={`fixed top-0 right-0 h-full w-80 bg-white/95 border-l border-slate-200 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="p-8 pt-28 flex-grow overflow-y-auto custom-scrollbar">
-          
-          {/* Reminder Section */}
-          <div className="mb-8 p-5 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border border-blue-100/60 shadow-inner">
-             <div className="flex items-center gap-2 mb-3">
-                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white shadow-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-                  </svg>
-                </span>
-                <h3 className="text-lg font-black text-slate-800">考試提醒</h3>
-             </div>
-             <p className="text-xs text-slate-500 mb-4 leading-relaxed">
-               將會考日期加入行事曆，提前規劃衝刺進度。
-             </p>
-             <div className="grid grid-cols-2 gap-2">
-                <button 
-                  onClick={handleGoogleCalendar}
-                  className="flex flex-col items-center justify-center p-3 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 hover:bg-blue-50/50 transition-all duration-300 group"
-                >
-                  <span className="text-xl mb-1 group-hover:scale-110 transition-transform">G</span>
-                  <span className="text-[10px] font-bold text-slate-600">Google 日曆</span>
-                </button>
-                <button 
-                  onClick={handleDownloadICS}
-                  className="flex flex-col items-center justify-center p-3 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 hover:bg-indigo-50/50 transition-all duration-300 group"
-                >
-                  <span className="text-xl mb-1 group-hover:scale-110 transition-transform">📅</span>
-                  <span className="text-[10px] font-bold text-slate-600">iCal / Outlook</span>
-                </button>
-             </div>
-          </div>
-
-          <div className="w-full h-px bg-slate-100 mb-8"></div>
 
           {/* Links Section */}
           <div className="mb-4">

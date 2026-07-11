@@ -1,0 +1,21 @@
+--- components/SidebarMenu.tsx
++++ components/SidebarMenu.tsx
+@@ -36,6 +36,8 @@
+       {/* New Toggle Button Design */}
+       <button
+         onClick={() => setIsOpen(prev => !prev)}
++        aria-expanded={isOpen}
++        aria-controls="mobile-menu"
+         className={`fixed top-4 right-4 sm:top-6 sm:right-6 z-[100] flex items-center gap-2 pl-3 pr-2 py-2 rounded-full backdrop-blur-xl transition-all duration-300 border shadow-lg hover:shadow-xl group ${
+           isOpen 
+             ? 'bg-slate-800 text-white border-slate-700 hover:bg-slate-700' 
+@@ -62,6 +64,9 @@
+ 
+       {/* Drawer */}
+       <div
++        id="mobile-menu"
++        role="dialog"
++        aria-modal="true"
+         className={`fixed top-0 right-0 h-full w-80 bg-white/95 border-l border-slate-200 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
+           isOpen ? 'translate-x-0' : 'translate-x-full'
+         }`}
