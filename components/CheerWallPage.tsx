@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Send, Sparkles, MessageCircleHeart, Quote, Flame, X } from 'lucide-react';
 import { supabase } from '../lib/supabase';
@@ -24,30 +24,21 @@ function checkContentSafety(message: string): boolean {
 
 const LanternRitualModal: React.FC<{ message: string; onComplete: () => void; onCancel: () => void }> = ({ message, onComplete, onCancel }) => {
    const [phase, setPhase] = useState<'ready'|'ignited'|'flying'>('ready');
-   const onCompleteRef = useRef(onComplete);
 
    useEffect(() => {
-       onCompleteRef.current = onComplete;
-   }, [onComplete]);
-
-   useEffect(() => {
-       let t2: ReturnType<typeof setTimeout> | undefined;
-       let t3: ReturnType<typeof setTimeout> | undefined;
        const t1 = setTimeout(() => {
            setPhase('ignited');
-           t2 = setTimeout(() => {
+           const t2 = setTimeout(() => {
                setPhase('flying');
-               t3 = setTimeout(() => {
-                   onCompleteRef.current();
+               const t3 = setTimeout(() => {
+                   onComplete(); 
                }, 3500); 
            }, 1500); 
        }, 500);
        return () => {
            clearTimeout(t1);
-           if (t2) clearTimeout(t2);
-           if (t3) clearTimeout(t3);
        };
-   }, []);
+   }, [onComplete]);
 
    return (
      <div className="fixed inset-0 z-[9999] bg-slate-900/95 backdrop-blur-md flex flex-col items-center justify-center overflow-hidden">
@@ -167,8 +158,6 @@ export const CheerWallPage: React.FC = () => {
   };
 
   const executeSubmit = async () => {
-    if (isSubmitting) return;
-
     setIsSubmitting(true);
     setErrorMsg(null);
     try {
