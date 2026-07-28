@@ -113,7 +113,7 @@ export const CheerWallPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [stats, setStats] = useState<{total: number, today: number}>({ total: 0, today: 0 });
-  const [ritualState, setRitualState] = useState<{ show: boolean, message: string }>({ show: false, message: '' });
+  const [ritualState, setRitualState] = useState<{ show: boolean, message: string, requestId: string }>({ show: false, message: '', requestId: '' });
   const [isAgreed, setIsAgreed] = useState(false);
   const submitLockRef = useRef(false);
 
@@ -164,7 +164,7 @@ export const CheerWallPage: React.FC = () => {
       return;
     }
 
-    setRitualState({ show: true, message: message.trim() });
+    setRitualState({ show: true, message: message.trim(), requestId: crypto.randomUUID() });
   };
 
   const executeSubmit = async () => {
@@ -178,14 +178,15 @@ export const CheerWallPage: React.FC = () => {
       if (!checkContentSafety(truncatedMessage)) {
         setErrorMsg('留言包含不適當內容，請修改後再送出。');
         setIsSubmitting(false);
-        setRitualState({ show: false, message: '' });
+        setRitualState({ show: false, message: '', requestId: '' });
         return;
       }
 
       const { data, error } = await supabase
-        .from('cheers')
-        .insert([{ message: truncatedMessage, ip_address: 'client', user_agent: navigator.userAgent }])
-        .select()
+        .rpc('submit_cheer', {
+          p_message: truncatedMessage,
+          p_request_id: ritualState.requestId,
+        })
         .single();
 
       if (error) throw error;
@@ -202,7 +203,7 @@ export const CheerWallPage: React.FC = () => {
     } finally {
       submitLockRef.current = false;
       setIsSubmitting(false);
-      setRitualState({ show: false, message: '' });
+      setRitualState({ show: false, message: '', requestId: '' });
     }
   };
 
@@ -361,7 +362,7 @@ export const CheerWallPage: React.FC = () => {
         <LanternRitualModal 
           message={ritualState.message} 
           onComplete={executeSubmit} 
-          onCancel={() => setRitualState({ show: false, message: '' })} 
+          onCancel={() => setRitualState({ show: false, message: '', requestId: '' })} 
         />
       )}
     </div>
