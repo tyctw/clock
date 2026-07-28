@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 import CountdownTimer from './components/CountdownTimer';
 import CheerCard from './components/CheerCard';
 import SchedulePage from './components/SchedulePage';
@@ -25,6 +25,39 @@ const ScrollToTop = () => {
   }, [pathname]);
   return null;
 };
+
+class RouteErrorBoundary extends React.Component<
+  { resetKey: string; children: React.ReactNode },
+  { hasError: boolean }
+> {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidUpdate(previousProps: Readonly<{ resetKey: string }>) {
+    if (previousProps.resetKey !== this.props.resetKey && this.state.hasError) {
+      this.setState({ hasError: false });
+    }
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <section className="flex flex-grow flex-col items-center justify-center gap-5 py-24 text-center">
+          <h1 className="text-2xl font-black text-slate-800">頁面暫時無法載入</h1>
+          <p className="text-slate-500">請回到首頁後再試一次。</p>
+          <Link to="/" className="rounded-xl bg-blue-600 px-5 py-3 font-bold text-white transition-colors hover:bg-blue-700">
+            回到首頁
+          </Link>
+        </section>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 const HomeContent: React.FC = () => (
   <>
@@ -166,6 +199,8 @@ const RulesPage: React.FC = () => (
 );
 
 const App: React.FC = () => {
+  const location = useLocation();
+
   return (
     <div className="min-h-screen text-slate-800 selection:bg-blue-200 selection:text-blue-900 flex flex-col relative overflow-x-hidden bg-[#f8fafc]">
       <ScrollToTop />
@@ -181,15 +216,18 @@ const App: React.FC = () => {
       </div>
 
       <main className="container mx-auto px-4 sm:px-6 pt-24 pb-8 z-10 flex-grow max-w-6xl flex flex-col">
-        <Routes>
-          <Route path="/" element={<HomeContent />} />
-          <Route path="/rules" element={<RulesPage />} />
-          <Route path="/schedule" element={<SchedulePage />} />
-          <Route path="/strategy/:subjectId" element={<StrategyPage />} />
-          <Route path="/about" element={<AboutUsPage />} />
-          <Route path="/privacy" element={<PrivacyPolicyPage />} />
-          <Route path="/cheer-wall" element={<CheerWallPage />} />
-        </Routes>
+        <RouteErrorBoundary resetKey={location.pathname}>
+          <Routes>
+            <Route path="/" element={<HomeContent />} />
+            <Route path="/rules" element={<RulesPage />} />
+            <Route path="/schedule" element={<SchedulePage />} />
+            <Route path="/strategy/:subjectId" element={<StrategyPage />} />
+            <Route path="/about" element={<AboutUsPage />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/cheer-wall" element={<CheerWallPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </RouteErrorBoundary>
 
         <footer className="mt-auto pt-16 sm:pt-24 mb-8 text-slate-400 text-sm w-full border-t border-slate-200/60">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-4">
