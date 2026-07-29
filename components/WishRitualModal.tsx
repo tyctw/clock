@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Check, Heart, Sparkles, X } from 'lucide-react';
 
 type RitualPhase = 'writing' | 'sealing' | 'blessing' | 'released';
@@ -39,8 +40,8 @@ export const WishRitualModal: React.FC<WishRitualModalProps> = ({ message, onCom
   const isSealed = phase === 'sealing' || phase === 'blessing' || phase === 'released';
   const isReleased = phase === 'released';
 
-  return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-slate-950/95 px-4 text-white backdrop-blur-xl">
+  return createPortal(
+    <div className="fixed inset-0 z-[2147483647] isolate flex items-center justify-center overflow-hidden bg-slate-950/95 px-4 text-white backdrop-blur-xl">
       <style>{`
         @keyframes wish-drift { 0%,100% { transform: translate3d(0,0,0); opacity: .18; } 50% { transform: translate3d(14px,-22px,0); opacity: .8; } }
         @keyframes wish-pulse { 0%,100% { transform: scale(.88); opacity: .3; } 50% { transform: scale(1.18); opacity: .78; } }
@@ -119,6 +120,7 @@ export const WishRitualModal: React.FC<WishRitualModalProps> = ({ message, onCom
           ))}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 };
