@@ -14,7 +14,27 @@ const FORBIDDEN_WORDS = [
   '幹', '靠北', '白痴', '智障', '死', '去死', '廢物', '垃圾', '操', '媽的', '賤', '王八', '婊', '妓', '屌', '雞掰', '笨蛋', '智障', '白爛'
 ];
 
+const POLITICAL_TERMS = [
+  '政治', '政黨', '選舉', '投票', '候選人', '競選', '罷免', '公投',
+  '總統', '副總統', '立委', '立法委員', '市長', '縣長', '議員',
+  '國民黨', '民進黨', '民眾黨', '時代力量', '共產黨',
+  '台獨', '統一', '兩岸', '中華民國', '習近平', '賴清德', '柯文哲',
+  '侯友宜', '韓國瑜', '川普', 'trump',
+];
+
+const EXTENDED_POLITICAL_TERMS = [
+  '政府', '行政院', '立法院', '司法院', '監察院', '考試院', '總統府', '國會',
+  '國安', '外交', '國防', '內政部', '政務官', '政見', '政策', '法案', '修憲', '憲法',
+  '主權', '民調', '遊行', '抗議', '示威', '執政', '在野', '藍白', '藍綠', '綠營', '藍營',
+  '統戰', '一國兩制', '九二共識', '一中原則', '台海', '獨立建國',
+  'democrat', 'republican', 'election', 'referendum', 'campaign', 'politics', 'government', 'parliament', 'congress',
+];
+
 function checkContentSafety(message: string): boolean {
+  const normalizedMessage = message.toLocaleLowerCase('zh-TW').replace(/\s+/g, '');
+  if (POLITICAL_TERMS.concat(EXTENDED_POLITICAL_TERMS).some((term) => normalizedMessage.includes(term.toLocaleLowerCase('zh-TW')))) {
+    return false;
+  }
   for (const word of FORBIDDEN_WORDS) {
     if (message.includes(word)) {
       return false;
