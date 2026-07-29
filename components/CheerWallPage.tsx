@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Send, Sparkles, MessageCircleHeart, Quote, Flame, X } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { WishRitualModal } from './WishRitualModal';
 
 interface Cheer {
   id: number;
@@ -359,7 +360,7 @@ export const CheerWallPage: React.FC = () => {
       </div>
 
       {ritualState.show && (
-        <LanternRitualModal 
+        <WishRitualModal
           message={ritualState.message} 
           onComplete={executeSubmit} 
           onCancel={() => setRitualState({ show: false, message: '', requestId: '' })} 
