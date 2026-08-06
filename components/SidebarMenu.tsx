@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { EXAM_NAME } from '../constants';
+import { Link } from 'react-router-dom';
 
 const links = [
   { name: '學測倒數', url: 'https://ceecc.vercel.app/' },
@@ -40,15 +41,15 @@ const SidebarMenu: React.FC = () => {
         aria-controls="mobile-menu"
         className={`fixed top-4 right-4 sm:top-6 sm:right-6 z-[100] flex items-center gap-2 pl-3 pr-2 py-2 rounded-full backdrop-blur-xl transition-all duration-300 border shadow-lg hover:shadow-xl group ${
           isOpen 
-            ? 'bg-slate-800 text-white border-slate-700 hover:bg-slate-700' 
-            : 'bg-white/80 text-slate-700 border-white/60 hover:bg-white hover:text-blue-600'
+            ? 'bg-[#102b59] text-white border-[#102b59] hover:bg-[#183a72]' 
+            : 'bg-[#fffdfa]/90 text-[#10264e] border-[#e7ddce] hover:bg-white hover:text-[#fa6841]'
         }`}
         aria-label="Toggle Menu"
       >
         <span className={`text-xs font-bold tracking-widest uppercase hidden sm:block transition-colors ${isOpen ? 'text-slate-300' : 'text-slate-500 group-hover:text-blue-600'}`}>
             Menu
         </span>
-        <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-slate-700 rotate-90' : 'bg-slate-100 group-hover:bg-blue-50'}`}>
+        <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-white/15 rotate-90' : 'bg-[#f5f0e7] group-hover:bg-[#ffe5bd]'}`}>
             {isOpen ? (
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
@@ -76,7 +77,7 @@ const SidebarMenu: React.FC = () => {
         role="dialog"
         aria-modal="true"
         aria-label="導覽選單"
-        className={`fixed top-0 right-0 h-full w-80 bg-white/95 border-l border-slate-200 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
+        className={`fixed top-0 right-0 h-full w-80 bg-[#fffdfa]/95 border-l border-[#e7ddce] shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -89,6 +90,14 @@ const SidebarMenu: React.FC = () => {
           </div>
           
           <nav className="space-y-3">
+            <Link
+              to="/mock-exams"
+              onClick={() => setIsOpen(false)}
+              className="group flex items-center justify-between p-4 rounded-2xl bg-[#fff3db] hover:bg-[#ffe7b6] border border-[#f3d99f] text-[#7a5414] transition-all shadow-sm hover:shadow-md"
+            >
+              <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-[#fa6841]"></div><span className="font-bold tracking-wide text-sm">九年級模擬考時間表</span></div>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+            </Link>
             {links.map((link) => (
               <a
                 key={link.name}
