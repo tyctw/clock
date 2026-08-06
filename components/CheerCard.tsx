@@ -71,7 +71,7 @@ const CheerCard: React.FC = () => {
           <div className="relative flex-grow flex items-center mb-10 w-full min-h-[160px]">
              {/* Left accent line */}
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-1/2 bg-gradient-to-b from-rose-300 to-orange-400 rounded-full opacity-50 group-hover:h-full group-hover:opacity-100 transition-all duration-700 shadow-[0_0_15px_rgba(244,63,94,0.5)]"></div>
-                        <p className={`text-2xl sm:text-3xl md:text-4xl text-slate-800 font-serif leading-[1.4] tracking-wide italic pl-8 drop-shadow-sm transition-opacity duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
+                        <p className={`[display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] max-h-[4.2em] overflow-hidden text-2xl sm:text-3xl md:text-4xl text-slate-800 font-serif leading-[1.4] tracking-wide italic pl-8 drop-shadow-sm transition-opacity duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
               {currentCheer.message}
             </p>
           </div>
