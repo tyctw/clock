@@ -65,8 +65,8 @@ const CountdownTimer: React.FC = () => {
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-70"></div>
           <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#ffcb4d]/15"></div>
 
-          <div className="mb-6 flex w-full items-center justify-between border-b border-white/15 pb-4 text-[11px] font-black tracking-wider text-white z-10"><span>ADMISSION COMPASS</span><span className="flex items-center gap-1.5 text-[#82ebb2]"><span className="h-2 w-2 rounded-full bg-[#82ebb2]"></span>SYSTEM READY</span></div>
-          <div className="flex flex-wrap sm:flex-nowrap items-center justify-center gap-4 sm:gap-3 md:gap-5 w-full z-10">
+          <div className="mb-6 flex w-full items-center justify-between border-b border-white/15 pb-4 text-[11px] font-black tracking-wider text-white z-10"><span>CAP EXAM COMPASS</span><span className="flex items-center gap-1.5 text-[#82ebb2]"><span className="h-2 w-2 rounded-full bg-[#82ebb2]"></span>會考倒數中</span></div>
+          <div className="grid grid-cols-2 sm:flex sm:flex-nowrap items-center justify-center gap-x-4 gap-y-6 sm:gap-3 md:gap-5 w-full z-10">
             {timerBlocks.map((block, index) => (
               <React.Fragment key={block.label}>
                 <div className="flex flex-col items-center min-w-[62px] sm:min-w-[74px] lg:min-w-[86px] group/block">

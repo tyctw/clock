@@ -18,7 +18,7 @@ const exams = [
 ];
 
 export const MockExamSchedulePage: React.FC = () => (
-  <section className="animate-fade-in pb-10 pt-6 sm:pt-12">
+  <section className="animate-fade-in pb-2 sm:pb-6 pt-6 sm:pt-12">
     <Link to="/" className="inline-flex items-center gap-2 text-sm font-bold text-[#687891] transition-colors hover:text-[#fa6841]">
       <ArrowLeft className="h-4 w-4" /> 返回首頁
     </Link>
@@ -35,7 +35,14 @@ export const MockExamSchedulePage: React.FC = () => (
       </div>
     </div>
 
-    <div className="mt-8 overflow-hidden rounded-[1.75rem] border border-[#e6dccc] bg-[#fffdfa] shadow-[0_12px_30px_rgba(72,53,27,0.08)]">
+    <div className="mt-8 space-y-4 md:hidden">
+      {exams.map((exam) => <article key={exam.order} className="overflow-hidden rounded-3xl border border-[#e6dccc] bg-[#fffdfa] shadow-[0_8px_20px_rgba(72,53,27,0.07)]">
+        <div className="flex items-center justify-between bg-[#f5f0e7] px-5 py-4"><div className="flex items-center gap-3"><span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#183468] font-black text-white">{exam.order}</span><div><p className="text-sm font-black text-[#183468]">第 {exam.order} 次模擬考</p><p className="mt-0.5 text-xs font-bold text-[#718099]">{exam.date.join('、')}</p></div></div><span className="rounded-full bg-[#ffe9bd] px-3 py-1.5 text-xs font-black text-[#9a6714]">{exam.publisher}</span></div>
+        <dl className="grid grid-cols-2 gap-x-4 gap-y-4 px-5 py-5 text-sm"><div><dt className="text-xs font-black text-[#8793a5]">國文（含寫作）</dt><dd className="mt-1 font-bold text-[#3d5272]">{exam.chinese}</dd></div><div><dt className="text-xs font-black text-[#8793a5]">英語／英聽</dt><dd className="mt-1 font-bold text-[#3d5272]">{exam.english}</dd></div><div><dt className="text-xs font-black text-[#8793a5]">數學</dt><dd className="mt-1 font-bold text-[#3d5272]">{exam.math}</dd></div><div><dt className="text-xs font-black text-[#8793a5]">自然</dt><dd className="mt-1 font-bold leading-6 text-[#3d5272]">{exam.science}</dd></div><div className="col-span-2"><dt className="text-xs font-black text-[#8793a5]">社會</dt><dd className="mt-1 font-bold text-[#3d5272]">{exam.social}</dd></div></dl>
+      </article>)}
+    </div>
+
+    <div className="mt-8 hidden overflow-hidden rounded-[1.75rem] border border-[#e6dccc] bg-[#fffdfa] shadow-[0_12px_30px_rgba(72,53,27,0.08)] md:block">
       <div className="border-b border-[#eee4d5] px-6 py-5 sm:px-8"><div className="flex items-center gap-2 text-sm font-bold text-[#536987]"><BookOpen className="h-4 w-4 text-[#fa6841]" /> 各科範圍依施測次別整理</div></div>
       <div className="overflow-x-auto">
         <table className="min-w-[980px] w-full text-left">

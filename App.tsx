@@ -63,27 +63,27 @@ class RouteErrorBoundary extends React.Component<
 const HomeContent: React.FC = () => (
   <>
     {/* Header Section */}
-    <header className="mb-14 sm:mb-20 relative animate-fade-in mt-6 sm:mt-12 min-h-[660px] lg:min-h-[580px] flex flex-col items-start pt-8 sm:pt-14">
+    <header className="mb-12 sm:mb-20 relative animate-fade-in mt-4 sm:mt-8 lg:min-h-[580px] flex flex-col items-start rounded-[2rem] border border-white bg-[#fffdfa]/90 px-5 py-8 shadow-[0_18px_45px_rgba(65,51,31,0.10)] sm:rounded-[2.5rem] sm:px-10 sm:py-12 lg:px-12 lg:py-14">
       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#fffdfa] border border-[#e3d8c9] shadow-sm mb-7">
         <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#ffe4d9]"><span className="w-2 h-2 rounded-full bg-[#fa6a42] animate-pulse"></span></span>
-        <span className="text-[#705942] text-xs sm:text-sm font-bold tracking-wide">{EXAM_DATES} 學測倒數</span>
+        <span className="text-[#705942] text-xs sm:text-sm font-bold tracking-wide">{EXAM_DATES} 國中教育會考倒數</span>
       </div>
       
-      <h1 className="flex flex-col items-start gap-2 sm:gap-3 mb-6 sm:mb-7 max-w-[58%] lg:max-w-[53%]">
-        <span className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.6rem] font-black tracking-[-0.07em] text-[#10264e] leading-none">
+      <h1 className="flex w-full max-w-none flex-col items-start gap-2 sm:gap-3 mb-6 sm:mb-7 lg:max-w-[53%]">
+        <span className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.6rem] font-black tracking-[-0.07em] text-[#10264e] leading-none">
           116年
         </span>
         <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-[-0.06em] text-[#fa6841] leading-none">
           國中教育會考
         </span>
       </h1>
-      <p className="max-w-[55%] text-base sm:text-lg leading-8 font-medium text-[#526886]">下一步的選擇，由你掌握；從今天開始，為目標穩穩前進。</p>
+      <p className="w-full max-w-xl text-base sm:text-lg leading-8 font-medium text-[#526886]">準備 116 年國中教育會考，掌握時間、安排複習，讓每天的努力更靠近目標。</p>
       
-      <div className="absolute right-0 top-12 sm:top-20 w-[48%] min-w-[410px] max-w-[590px] hidden lg:flex justify-center before:absolute before:-right-4 before:top-6 before:h-[calc(100%-1rem)] before:w-full before:rounded-[2rem] before:bg-[#efc35d]">
+      <div className="relative mt-8 flex w-full max-w-[590px] justify-center lg:absolute lg:right-8 lg:top-12 lg:mt-0 lg:w-[48%] lg:min-w-[410px] before:hidden lg:before:absolute lg:before:-right-4 lg:before:top-6 lg:before:h-[calc(100%-1rem)] lg:before:w-full lg:before:rounded-[2rem] lg:before:bg-[#efc35d]">
          <CountdownTimer />
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-start gap-4 sm:gap-4 w-full max-w-[54%] px-0 mt-2">
+      <div className="flex flex-col sm:flex-row justify-start gap-4 sm:gap-4 w-full lg:max-w-[54%] px-0 mt-2">
         <Link 
           to="/cheer-wall" 
           className="group relative flex-1 flex items-center justify-center gap-4 px-6 py-5 rounded-3xl bg-gradient-to-br from-amber-50 to-orange-100 border border-orange-200 shadow-[0_8px_20px_rgba(251,146,60,0.1)] hover:shadow-[0_15px_30px_rgba(251,146,60,0.2)] hover:-translate-y-1 transition-all duration-400 overflow-hidden"
@@ -204,19 +204,17 @@ const App: React.FC = () => {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen text-slate-800 selection:bg-[#ffcb4d] selection:text-[#10264e] flex flex-col relative overflow-x-hidden bg-[#f5f0e7]">
+    <div className="min-h-0 text-slate-800 selection:bg-[#ffcb4d] selection:text-[#10264e] flex flex-col relative overflow-x-hidden bg-[#f5f0e7]">
       <ScrollToTop />
       <ClockHeader />
       <SidebarMenu />
       
       {/* Dynamic Background (Light Theme) */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute -right-[16vw] -top-[20vw] h-[48vw] w-[48vw] min-h-[430px] min-w-[430px] rounded-full bg-[#ffd875]"></div>
-        <div className="absolute -bottom-[22vw] -left-[18vw] h-[42vw] w-[42vw] min-h-[330px] min-w-[330px] rounded-full bg-[#d6eee7]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(255,255,255,0.72),transparent_31%)]"></div>
+        <div className="absolute inset-0 bg-[#f5f0e7]"></div>
       </div>
 
-      <main className="container mx-auto px-5 sm:px-8 pt-24 pb-8 z-10 flex-grow max-w-6xl flex flex-col">
+      <main className="container mx-auto px-5 sm:px-8 pt-24 pb-0 sm:pb-4 z-10 max-w-6xl flex flex-col">
         <RouteErrorBoundary resetKey={location.pathname}>
           <Routes>
             <Route path="/" element={<HomeContent />} />
@@ -231,7 +229,7 @@ const App: React.FC = () => {
           </Routes>
         </RouteErrorBoundary>
 
-        <footer className="mt-auto pt-16 sm:pt-24 mb-8 text-slate-400 text-sm w-full border-t border-slate-200/60">
+        <footer className="mt-4 sm:mt-10 pt-4 sm:pt-8 mb-0 text-slate-400 text-sm w-full border-t border-slate-200/60">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-4">
             <div className="flex flex-col items-center md:items-start gap-1">
               <p className="font-semibold text-slate-500">© TYCTW 會考落點分析</p>
