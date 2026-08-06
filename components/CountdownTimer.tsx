@@ -66,13 +66,13 @@ const CountdownTimer: React.FC = () => {
           <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#ffcb4d]/15"></div>
 
           <div className="mb-6 flex w-full items-center justify-between border-b border-white/15 pb-4 text-[11px] font-black tracking-wider text-white z-10"><span>CAP EXAM COMPASS</span><span className="flex items-center gap-1.5 text-[#82ebb2]"><span className="h-2 w-2 rounded-full bg-[#82ebb2]"></span>會考倒數中</span></div>
-          <div className="grid grid-cols-2 sm:flex sm:flex-nowrap items-center justify-center gap-x-4 gap-y-6 sm:gap-3 md:gap-5 w-full z-10">
+          <div className="grid w-full grid-cols-2 items-center justify-center gap-x-5 gap-y-7 z-10">
             {timerBlocks.map((block, index) => (
               <React.Fragment key={block.label}>
-                <div className="flex flex-col items-center min-w-[62px] sm:min-w-[74px] lg:min-w-[86px] group/block">
+                <div className="flex min-w-0 flex-col items-center group/block">
                   <div className="relative flex items-center justify-center overflow-hidden">
                      {/* The Number */}
-                     <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tabular-nums tracking-tighter text-white group-hover/block:-translate-y-1 transition-transform duration-500">
+                     <span className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tabular-nums tracking-[-0.08em] text-white group-hover/block:-translate-y-1 transition-transform duration-500">
                        {block.value.toString().padStart(2, '0')}
                      </span>
                   </div>
@@ -87,7 +87,7 @@ const CountdownTimer: React.FC = () => {
 
                 {/* Separator Colons (hidden on mobile, visible on sm+) */}
                 {index < timerBlocks.length - 1 && (
-                  <div className="hidden sm:flex flex-col gap-3 lg:gap-4 pb-7 text-white/40">
+                  <div className="hidden flex-col gap-3 lg:gap-4 pb-7 text-white/40">
                     <div className="w-2 h-2 rounded-full bg-white/40"></div>
                     <div className="w-2 h-2 rounded-full bg-white/40"></div>
                   </div>
