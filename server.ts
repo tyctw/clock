@@ -6,7 +6,7 @@ import { createClient } from "@supabase/supabase-js";
 // Initialize Supabase client
 const supabaseUrl = process.env.SUPABASE_URL || '';
 const supabaseKey = process.env.SUPABASE_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 
 const FORBIDDEN_WORDS = [
   '幹', '靠北', '白痴', '智障', '死', '去死', '廢物', '垃圾', '操', '媽的', '賤', '王八', '婊', '妓', '屌', '雞掰', '笨蛋', '智障', '白爛'
@@ -43,7 +43,7 @@ function checkContentSafety(message: string): boolean {
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
   
   // Enable trust proxy to get the real IP address of the client
   app.set('trust proxy', true);
@@ -65,7 +65,7 @@ async function startServer() {
         return res.status(400).json({ error: "留言包含不適當內容，請修改後再送出。" });
       }
       
-      if (!supabaseUrl || !supabaseKey) {
+      if (!supabase) {
           return res.status(500).json({ error: "Supabase credentials are not configured in .env" });
       }
 
@@ -104,7 +104,7 @@ async function startServer() {
   // API to get latest cheers
   app.get("/api/cheers", async (req, res) => {
     try {
-      if (!supabaseUrl || !supabaseKey) {
+      if (!supabase) {
          return res.json([]); // return empty gracefully if not configured yet
       }
       
@@ -132,7 +132,7 @@ async function startServer() {
 
   app.get("/api/cheers/stats", async (req, res) => {
     try {
-      if (!supabaseUrl || !supabaseKey) {
+      if (!supabase) {
          return res.json({ total: 0, today: 0 }); 
       }
         

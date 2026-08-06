@@ -11,6 +11,7 @@ import PlacementAnalysis from './components/PlacementAnalysis';
 import OfficialGuide from './components/OfficialGuide';
 import StudyTips from './components/StudyTips';
 import StrategyPage from './components/StrategyPage';
+import { MockExamSchedulePage } from './components/MockExamSchedulePage';
 import { AboutUsPage } from './components/AboutUsPage';
 import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
 import { CheerWallPage } from './components/CheerWallPage';
@@ -62,26 +63,27 @@ class RouteErrorBoundary extends React.Component<
 const HomeContent: React.FC = () => (
   <>
     {/* Header Section */}
-    <header className="text-center mb-10 sm:mb-16 relative animate-fade-in mt-8 sm:mt-12 flex flex-col items-center">
-      <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/60 border border-slate-200/60 shadow-sm mb-6 backdrop-blur-xl">
-        <span className="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse"></span>
-        <span className="text-slate-600 text-xs sm:text-sm font-bold tracking-[0.2em] uppercase">{EXAM_DATES}</span>
+    <header className="mb-14 sm:mb-20 relative animate-fade-in mt-6 sm:mt-12 min-h-[660px] lg:min-h-[580px] flex flex-col items-start pt-8 sm:pt-14">
+      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#fffdfa] border border-[#e3d8c9] shadow-sm mb-7">
+        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#ffe4d9]"><span className="w-2 h-2 rounded-full bg-[#fa6a42] animate-pulse"></span></span>
+        <span className="text-[#705942] text-xs sm:text-sm font-bold tracking-wide">{EXAM_DATES} 學測倒數</span>
       </div>
       
-      <h1 className="flex flex-col items-center gap-2 sm:gap-3 mb-8 sm:mb-12">
-        <span className="text-6xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter text-slate-800 drop-shadow-sm leading-none bg-clip-text text-transparent bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900">
+      <h1 className="flex flex-col items-start gap-2 sm:gap-3 mb-6 sm:mb-7 max-w-[58%] lg:max-w-[53%]">
+        <span className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.6rem] font-black tracking-[-0.07em] text-[#10264e] leading-none">
           116年
         </span>
-        <span className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 drop-shadow-sm">
+        <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-[-0.06em] text-[#fa6841] leading-none">
           國中教育會考
         </span>
       </h1>
+      <p className="max-w-[55%] text-base sm:text-lg leading-8 font-medium text-[#526886]">下一步的選擇，由你掌握；從今天開始，為目標穩穩前進。</p>
       
-      <div className="w-full max-w-5xl mx-auto flex justify-center mb-10">
+      <div className="absolute right-0 top-12 sm:top-20 w-[48%] min-w-[410px] max-w-[590px] hidden lg:flex justify-center before:absolute before:-right-4 before:top-6 before:h-[calc(100%-1rem)] before:w-full before:rounded-[2rem] before:bg-[#efc35d]">
          <CountdownTimer />
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 w-full max-w-3xl mx-auto px-4 mt-2">
+      <div className="flex flex-col sm:flex-row justify-start gap-4 sm:gap-4 w-full max-w-[54%] px-0 mt-2">
         <Link 
           to="/cheer-wall" 
           className="group relative flex-1 flex items-center justify-center gap-4 px-6 py-5 rounded-3xl bg-gradient-to-br from-amber-50 to-orange-100 border border-orange-200 shadow-[0_8px_20px_rgba(251,146,60,0.1)] hover:shadow-[0_15px_30px_rgba(251,146,60,0.2)] hover:-translate-y-1 transition-all duration-400 overflow-hidden"
@@ -202,25 +204,25 @@ const App: React.FC = () => {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen text-slate-800 selection:bg-blue-200 selection:text-blue-900 flex flex-col relative overflow-x-hidden bg-[#f8fafc]">
+    <div className="min-h-screen text-slate-800 selection:bg-[#ffcb4d] selection:text-[#10264e] flex flex-col relative overflow-x-hidden bg-[#f5f0e7]">
       <ScrollToTop />
       <ClockHeader />
       <SidebarMenu />
       
       {/* Dynamic Background (Light Theme) */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-blue-100/50 rounded-full blur-[100px] mix-blend-multiply animate-pulse-slow"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-indigo-100/50 rounded-full blur-[100px] mix-blend-multiply animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-[40%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] bg-cyan-50/60 rounded-full blur-[80px] mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30 mix-blend-overlay"></div>
+        <div className="absolute -right-[16vw] -top-[20vw] h-[48vw] w-[48vw] min-h-[430px] min-w-[430px] rounded-full bg-[#ffd875]"></div>
+        <div className="absolute -bottom-[22vw] -left-[18vw] h-[42vw] w-[42vw] min-h-[330px] min-w-[330px] rounded-full bg-[#d6eee7]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(255,255,255,0.72),transparent_31%)]"></div>
       </div>
 
-      <main className="container mx-auto px-4 sm:px-6 pt-24 pb-8 z-10 flex-grow max-w-6xl flex flex-col">
+      <main className="container mx-auto px-5 sm:px-8 pt-24 pb-8 z-10 flex-grow max-w-6xl flex flex-col">
         <RouteErrorBoundary resetKey={location.pathname}>
           <Routes>
             <Route path="/" element={<HomeContent />} />
             <Route path="/rules" element={<RulesPage />} />
             <Route path="/schedule" element={<SchedulePage />} />
+            <Route path="/mock-exams" element={<MockExamSchedulePage />} />
             <Route path="/strategy/:subjectId" element={<StrategyPage />} />
             <Route path="/about" element={<AboutUsPage />} />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
