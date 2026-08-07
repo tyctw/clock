@@ -63,34 +63,34 @@ class RouteErrorBoundary extends React.Component<
 const HomeContent: React.FC = () => (
   <>
     {/* Header Section */}
-    <header className="mb-12 sm:mb-20 relative animate-fade-in mt-4 sm:mt-8 lg:min-h-[580px] flex flex-col items-start rounded-[2rem] border border-white bg-[#fffdfa]/90 px-5 py-8 shadow-[0_18px_45px_rgba(65,51,31,0.10)] sm:rounded-[2.5rem] sm:px-10 sm:py-12 lg:px-12 lg:py-14">
+    <header className="mb-12 sm:mb-20 relative animate-fade-in mt-4 sm:mt-8 lg:min-h-[620px] flex flex-col items-start rounded-[2rem] border border-white bg-[#fffdfa]/90 px-5 py-8 shadow-[0_18px_45px_rgba(65,51,31,0.10)] sm:rounded-[2.5rem] sm:px-10 sm:py-12 lg:justify-center lg:px-12 lg:py-14 lg:pr-[52%]">
       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#fffdfa] border border-[#e3d8c9] shadow-sm mb-7">
         <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#ffe4d9]"><span className="w-2 h-2 rounded-full bg-[#fa6a42] animate-pulse"></span></span>
         <span className="text-[#705942] text-xs sm:text-sm font-bold tracking-wide">{EXAM_DATES} 國中教育會考倒數</span>
       </div>
       
-      <h1 className="flex w-full max-w-none flex-col items-start gap-2 sm:gap-3 mb-6 sm:mb-7 lg:max-w-[53%]">
-        <span className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.6rem] font-black tracking-[-0.07em] text-[#10264e] leading-none">
+      <h1 className="flex w-full max-w-none flex-col items-start gap-2 sm:gap-3 mb-6 sm:mb-7">
+        <span className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.9rem] font-black tracking-[-0.07em] text-[#10264e] leading-none">
           116年
         </span>
-        <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-[-0.06em] text-[#fa6841] leading-none">
+        <span className="text-3xl sm:text-4xl md:text-5xl lg:text-[4.25rem] font-black tracking-[-0.06em] text-[#fa6841] leading-none">
           國中教育會考
         </span>
       </h1>
       <p className="w-full max-w-xl text-base sm:text-lg leading-8 font-medium text-[#526886]">準備 116 年國中教育會考，掌握時間、安排複習，讓每天的努力更靠近目標。</p>
       
-      <div className="relative mt-8 flex w-full max-w-[590px] justify-center lg:absolute lg:right-8 lg:top-12 lg:mt-0 lg:w-[48%] lg:min-w-[410px] before:hidden lg:before:absolute lg:before:-right-4 lg:before:top-6 lg:before:h-[calc(100%-1rem)] lg:before:w-full lg:before:rounded-[2rem] lg:before:bg-[#efc35d]">
+      <div className="relative mt-8 flex w-full max-w-[590px] justify-center lg:absolute lg:right-10 lg:top-1/2 lg:mt-0 lg:w-[46%] lg:min-w-[410px] lg:-translate-y-1/2 before:hidden lg:before:absolute lg:before:-right-4 lg:before:top-6 lg:before:h-[calc(100%-1rem)] lg:before:w-full lg:before:rounded-[2rem] lg:before:bg-[#efc35d]">
          <CountdownTimer />
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-start gap-4 sm:gap-4 w-full lg:max-w-[54%] px-0 mt-2">
+      <div className="relative z-10 mt-6 flex w-full flex-col justify-start gap-3 px-0 sm:flex-row lg:mt-8">
         <Link 
           to="/cheer-wall" 
-          className="group relative flex-1 flex items-center justify-center gap-4 px-6 py-5 rounded-3xl bg-gradient-to-br from-amber-50 to-orange-100 border border-orange-200 shadow-[0_8px_20px_rgba(251,146,60,0.1)] hover:shadow-[0_15px_30px_rgba(251,146,60,0.2)] hover:-translate-y-1 transition-all duration-400 overflow-hidden"
+          className="group relative flex flex-1 items-center justify-start gap-3 overflow-hidden rounded-2xl border border-orange-200 bg-gradient-to-br from-amber-50 to-orange-100 px-4 py-4 shadow-[0_8px_20px_rgba(251,146,60,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(251,146,60,0.2)]"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-orange-200/0 via-white/60 to-orange-200/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-          <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-orange-500 shadow-sm group-hover:scale-110 transition-transform duration-400 group-hover:rotate-6">
-             <MessageSquareHeart className="w-6 h-6" />
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-orange-500 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+             <MessageSquareHeart className="h-5 w-5" />
           </div>
           <div className="flex flex-col items-start">
             <span className="text-xs font-bold text-orange-600/80 mb-0.5">看看大家說什麼</span>
@@ -105,11 +105,11 @@ const HomeContent: React.FC = () => (
           aria-label="會考落點分析 (在新分頁開啟)" 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="group relative flex-1 flex items-center justify-center gap-4 px-6 py-5 rounded-3xl bg-gradient-to-br from-blue-50 to-indigo-100 border border-blue-200 shadow-[0_8px_20px_rgba(59,130,246,0.1)] hover:shadow-[0_15px_30px_rgba(59,130,246,0.2)] hover:-translate-y-1 transition-all duration-400 overflow-hidden"
+          className="group relative flex flex-1 items-center justify-start gap-3 overflow-hidden rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-100 px-4 py-4 shadow-[0_8px_20px_rgba(59,130,246,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(59,130,246,0.2)]"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-blue-200/0 via-white/60 to-blue-200/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-          <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-blue-600 shadow-sm group-hover:scale-110 transition-transform duration-400 group-hover:-rotate-6">
-             <Target className="w-6 h-6" />
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-blue-600 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+             <Target className="h-5 w-5" />
           </div>
           <div className="flex flex-col items-start">
             <span className="text-xs font-bold text-blue-600/80 mb-0.5">預測最佳高中</span>
