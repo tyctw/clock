@@ -98,6 +98,15 @@ const SidebarMenu: React.FC = () => {
               <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-[#fa6841]"></div><span className="font-bold tracking-wide text-sm">九年級模擬考時間表</span></div>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
             </Link>
+            <a
+              href="https://tyctw.github.io/spare/support/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between p-4 rounded-2xl bg-rose-50 hover:bg-rose-100 border border-rose-100 text-rose-600 transition-all shadow-sm hover:shadow-md"
+            >
+              <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-rose-400"></div><span className="font-bold tracking-wide text-sm">小額贊助</span></div>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+            </a>
             {links.map((link) => (
               <a
                 key={link.name}

@@ -74,7 +74,7 @@ export const CheerWallPageV2: React.FC = () => {
     <main className="mx-auto w-full max-w-6xl animate-fade-in px-4 pb-12">
       <Link to="/" className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 text-sm font-bold text-slate-500 shadow-sm transition-colors hover:text-rose-600"><ArrowLeft className="h-4 w-4" />回到首頁</Link>
 
-      <section className="relative overflow-hidden rounded-[2.5rem] border border-[#efddea] bg-[#fffdfa] px-6 py-10 text-[#64384d] shadow-[0_22px_55px_rgba(141,77,105,0.12)] sm:px-10 sm:py-12">
+      <section className="relative overflow-hidden rounded-t-[2.5rem] border border-b-0 border-[#efddea] bg-[#fffdfa] px-6 py-10 text-[#64384d] sm:px-10 sm:py-12">
         <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(#f1cdd5_1px,transparent_1px)] [background-size:18px_18px]" /><div className="absolute -right-16 -top-20 h-80 w-80 rounded-full bg-rose-200/70 blur-3xl" /><div className="absolute -bottom-24 left-1/3 h-64 w-64 rounded-full bg-amber-200/50 blur-3xl" />
         <div className="relative mx-auto max-w-5xl text-center sm:text-left">
           <span className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-rose-100 to-amber-100 text-rose-500 shadow-sm ring-1 ring-rose-200 sm:mx-0"><MessageCircleHeart className="h-7 w-7" /></span>
@@ -88,7 +88,7 @@ export const CheerWallPageV2: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative z-10 mx-auto mt-8 max-w-6xl rounded-[2rem] border border-[#efddea] bg-[#fffdfa] p-5 shadow-[0_16px_35px_rgba(68,32,84,0.12)] sm:mt-10 sm:p-7">
+      <section className="relative z-10 mx-auto max-w-6xl rounded-b-[2.5rem] border border-[#efddea] bg-[#fffdfa] p-5 shadow-[0_22px_55px_rgba(141,77,105,0.12)] sm:p-7">
         <div className="mb-4 flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-100 text-rose-600"><Heart className="h-5 w-5 fill-current" /></span><div><h2 className="font-black text-slate-800">留下一句祝福</h2><p className="text-xs font-medium text-slate-500">你的話，可能正好成為某人的力量。</p></div></div>
         <form onSubmit={startSubmit}>
           <textarea value={message} onChange={(event) => { setMessage(event.target.value); setError(''); }} maxLength={100} disabled={isSubmitting} placeholder="例如：穩穩寫完每一題，你一定可以！" className="min-h-[112px] w-full resize-none rounded-2xl border border-rose-100 bg-rose-50/40 px-4 py-3 text-slate-700 outline-none transition focus:border-rose-300 focus:ring-4 focus:ring-rose-100" />

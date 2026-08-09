@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 import CountdownTimer from './components/CountdownTimer';
 import HeroV2 from './components/HeroV2';
+import SiteFooter from './components/SiteFooter';
 import CheerCard from './components/CheerCard';
 import SchedulePage from './components/SchedulePage';
 import SidebarMenu from './components/SidebarMenu';
@@ -233,7 +234,7 @@ const App: React.FC = () => {
           </Routes>
         </RouteErrorBoundary>
 
-        <footer className="mt-4 sm:mt-10 pt-4 sm:pt-8 mb-0 text-slate-400 text-sm w-full border-t border-slate-200/60">
+        <footer className="hidden">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-4">
             <div className="flex flex-col items-center md:items-start gap-1">
               <p className="font-semibold text-slate-500">© TYCTW 會考落點分析</p>
@@ -249,7 +250,11 @@ const App: React.FC = () => {
               <Link to="/privacy" className="hover:text-blue-600 transition-colors duration-300 font-medium">隱私權政策</Link>
             </div>
           </div>
+          <div className="mt-5 flex justify-center">
+            <a href="https://tyctw.github.io/spare/support/" target="_blank" rel="noopener noreferrer" className="rounded-full bg-rose-50 px-4 py-2 text-xs font-bold text-rose-500 transition-colors hover:bg-rose-100 hover:text-rose-600">小額贊助</a>
+          </div>
         </footer>
+        <SiteFooter />
       </main>
     </div>
   );
