@@ -1,55 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { CalendarDays, Menu, Timer, X } from 'lucide-react';
 import { TARGET_DATE } from '../constants';
 
-const ClockHeader: React.FC = () => {
-  const [time, setTime] = useState<Date | null>(null);
-  const [daysLeft, setDaysLeft] = useState<number>(0);
+interface ClockHeaderProps { isMenuOpen: boolean; onMenuToggle: () => void; }
 
-  useEffect(() => {
-    setTime(new Date());
-    
-    const calculateDays = () => {
-        const diff = +TARGET_DATE - +new Date();
-        return diff > 0 ? Math.floor(diff / (1000 * 60 * 60 * 24)) : 0;
-    };
-    setDaysLeft(calculateDays());
-
-    const timer = setInterval(() => {
-        setTime(new Date());
-        setDaysLeft(calculateDays());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  if (!time) return null;
-
-  return (
-    <div className="fixed top-4 left-4 sm:top-6 sm:left-8 z-40 animate-fade-in select-none">
-       <div className="flex items-center gap-3 p-1.5 pr-5 rounded-2xl bg-[#fffdfa]/95 backdrop-blur-xl border border-[#e7ddce] shadow-[0_8px_20px_rgba(65,51,31,0.08)] transition-all hover:shadow-lg group">
-          
-          {/* Circular Badge for Days Left */}
-          <div className="flex flex-col items-center justify-center w-12 h-12 rounded-xl bg-[#102b59] text-white shadow-md group-hover:scale-105 transition-transform duration-300">
-             <span className="text-[10px] font-bold uppercase leading-none opacity-80">剩餘</span>
-             <span className="text-lg font-black leading-none tracking-tighter">{daysLeft}</span>
-          </div>
-
-          <div className="flex flex-col">
-            <div className="flex items-baseline gap-2">
-                <h2 className="text-xl sm:text-2xl font-black text-[#10264e] font-mono tracking-tighter tabular-nums leading-none">
-                    {time.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })}
-                </h2>
-                <span className="text-xs font-bold text-slate-400 animate-pulse">:</span>
-                <span className="text-sm font-bold text-slate-500 font-mono tabular-nums">
-                    {time.getSeconds().toString().padStart(2, '0')}
-                </span>
-            </div>
-            <p className="text-[10px] sm:text-xs text-[#687891] font-bold uppercase tracking-wider">
-                {time.toLocaleDateString('zh-TW', { month: 'short', day: 'numeric', weekday: 'short' })}
-            </p>
-          </div>
-       </div>
-    </div>
-  );
+const ClockHeader: React.FC<ClockHeaderProps> = ({ isMenuOpen, onMenuToggle }) => {
+  const [now, setNow] = useState(new Date());
+  const [daysLeft, setDaysLeft] = useState(0);
+  useEffect(() => { const update = () => { const current = new Date(); setNow(current); setDaysLeft(Math.max(0, Math.floor((TARGET_DATE.getTime() - current.getTime()) / 86_400_000))); }; update(); const timer = window.setInterval(update, 1000); return () => window.clearInterval(timer); }, []);
+  return <header className="fixed left-0 right-0 top-0 z-30 px-4 pt-3 sm:px-8 sm:pt-4"><div className="mx-auto flex h-14 max-w-6xl items-center justify-between rounded-2xl border border-[#e6dccd] bg-[#fffdfa]/90 px-3 shadow-[0_8px_22px_rgba(65,51,31,0.08)] backdrop-blur-xl sm:px-4"><div className="flex min-w-0 items-center gap-2.5"><span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#193968] text-white shadow-sm"><CalendarDays className="h-[1.125rem] w-[1.125rem]" /></span><div className="min-w-0"><p className="truncate text-sm font-black tracking-tight text-[#193968]">116 會考倒數</p><p className="hidden text-[10px] font-bold tracking-wide text-slate-400 sm:block">2027 / 05 / 15 — 05 / 16</p></div></div><div className="flex items-center gap-2"><div className="hidden items-center gap-2 sm:flex"><div className="rounded-xl bg-[#f4f7fb] px-3 py-1.5 text-right"><p className="text-[9px] font-black tracking-[0.14em] text-slate-400">現在時間</p><time className="text-sm font-black tabular-nums text-slate-700">{now.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}</time></div><div className="flex items-center gap-2 rounded-xl bg-[#fff4df] px-3 py-1.5 text-[#a96916]"><Timer className="h-4 w-4" /><div><p className="text-[9px] font-black tracking-[0.12em] text-amber-700/60">距離會考</p><p className="text-sm font-black tabular-nums">{daysLeft} 天</p></div></div></div><button type="button" onClick={onMenuToggle} aria-expanded={isMenuOpen} aria-controls="mobile-menu" aria-label="開啟菜單" className={`flex h-9 items-center gap-2 rounded-xl border px-2.5 text-xs font-black transition ${isMenuOpen ? 'border-[#193968] bg-[#193968] text-white' : 'border-[#dce8f4] bg-[#f4f7fb] text-[#193968] hover:bg-white'}`}><span className="hidden sm:block">選單</span>{isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}</button></div></div></header>;
 };
 
 export default ClockHeader;

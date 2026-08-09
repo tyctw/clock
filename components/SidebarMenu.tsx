@@ -39,17 +39,17 @@ const SidebarMenu: React.FC = () => {
         onClick={() => setIsOpen(prev => !prev)}
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
-        className={`fixed top-4 right-4 sm:top-6 sm:right-6 z-[100] flex items-center gap-2 pl-3 pr-2 py-2 rounded-full backdrop-blur-xl transition-all duration-300 border shadow-lg hover:shadow-xl group ${
+        className={`fixed top-5 right-[max(1rem,calc((100vw-72rem)/2+1rem))] z-[100] flex h-10 items-center gap-2 rounded-xl border px-2 backdrop-blur-xl transition-all duration-300 hover:shadow-md group ${
           isOpen 
-            ? 'bg-[#102b59] text-white border-[#102b59] hover:bg-[#183a72]' 
-            : 'bg-[#fffdfa]/90 text-[#10264e] border-[#e7ddce] hover:bg-white hover:text-[#fa6841]'
+            ? 'bg-[#193968] text-white border-[#193968] hover:bg-[#102b54]' 
+            : 'bg-[#f4f7fb] text-[#193968] border-[#dce8f4] hover:bg-white hover:text-[#fa6841]'
         }`}
         aria-label="Toggle Menu"
       >
         <span className={`text-xs font-bold tracking-widest uppercase hidden sm:block transition-colors ${isOpen ? 'text-slate-300' : 'text-slate-500 group-hover:text-blue-600'}`}>
             Menu
         </span>
-        <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-white/15 rotate-90' : 'bg-[#f5f0e7] group-hover:bg-[#ffe5bd]'}`}>
+        <div className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-white/15 rotate-90' : 'bg-white group-hover:bg-[#fff0e8]'}`}>
             {isOpen ? (
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
