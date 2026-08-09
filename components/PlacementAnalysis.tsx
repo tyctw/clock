@@ -20,13 +20,13 @@ const PlacementAnalysis: React.FC = () => (
           <Target className="h-6 w-6" />
         </div>
         <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-white/80 px-3 py-1.5 text-[10px] font-black tracking-[0.16em] text-blue-600">
-          <Sparkles className="h-3.5 w-3.5" /> AI SMART
+          <Sparkles className="h-3.5 w-3.5" /> 免費升學工具
         </span>
       </div>
 
       <div>
         <h2 className="mb-2 text-2xl font-black tracking-tight text-[#173d78] transition-colors group-hover:text-blue-600 sm:text-[1.7rem]">會考落點分析系統</h2>
-        <p className="max-w-md text-sm font-medium leading-6 text-blue-950/60">結合歷年數據與 AI 智能運算，為你精準預測最佳志願，贏在起跑點。</p>
+        <p className="max-w-md text-sm font-medium leading-6 text-blue-950/60">免費整理升學資訊，協助比較高中、高職、五專等不同升學路徑，讓每位學生都能安心做選擇。</p>
       </div>
 
       <div className="flex items-center justify-between gap-3 border-t border-blue-200/60 pt-4">
