@@ -9,7 +9,7 @@ import ClockHeader from './components/ClockHeader';
 import ExamRules from './components/ExamRules';
 import PlacementAnalysis from './components/PlacementAnalysis';
 import OfficialGuide from './components/OfficialGuide';
-import StudyTips from './components/StudyTips';
+import StudyTips from './components/StudyTipsV2';
 import StrategyPage from './components/StrategyPage';
 import { MockExamSchedulePage } from './components/MockExamSchedulePage';
 import { AboutUsPage } from './components/AboutUsPage';
@@ -125,20 +125,20 @@ const HomeContent: React.FC = () => (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 w-full max-w-6xl mx-auto">
         
         {/* Row 1: Status & Motivation */}
-        <div className="col-span-1 lg:col-span-5 h-auto lg:h-[28rem] min-h-[24rem]">
+        <div className="col-span-1 lg:col-span-5 h-auto lg:h-[19rem] min-h-[17rem]">
            <NextEvent />
         </div>
         
-        <div className="col-span-1 lg:col-span-7 h-auto lg:h-[28rem] min-h-[24rem]">
+        <div className="col-span-1 lg:col-span-7 h-auto lg:h-[19rem] min-h-[17rem]">
            <CheerCard />
         </div>
 
         {/* Row 2: Placement Analysis & Official Guide */}
-        <div className="col-span-1 lg:col-span-6 min-h-[18rem] lg:min-h-[24rem]">
+        <div className="col-span-1 lg:col-span-6 min-h-[17rem] lg:h-[18rem]">
            <PlacementAnalysis />
         </div>
         
-        <div className="col-span-1 lg:col-span-6 min-h-[18rem] lg:min-h-[24rem]">
+        <div className="col-span-1 lg:col-span-6 min-h-[17rem] lg:h-[18rem]">
            <OfficialGuide />
         </div>
 
@@ -148,35 +148,37 @@ const HomeContent: React.FC = () => (
         </div>
 
         {/* Row 5: Schedule & Exam Rules (Half Widths on Desktop) */}
-        <div className="col-span-1 lg:col-span-6 min-h-[10rem]">
-          <Link to="/schedule" className="group block relative w-full h-full rounded-[2rem] bg-gradient-to-br from-blue-50 to-indigo-50/50 border border-blue-100/60 shadow-sm hover:-translate-y-1.5 hover:shadow-xl transition-all duration-500 p-6 sm:p-8 overflow-hidden">
-             <div className="absolute top-0 right-0 w-48 h-48 bg-blue-200/30 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:scale-125 transition-transform duration-700"></div>
+        <div className="col-span-1 lg:col-span-6 min-h-[13.5rem]">
+          <Link to="/schedule" className="group block relative w-full h-full rounded-[2rem] bg-[#eaf4ff] border border-[#a8c8f5] shadow-[0_16px_35px_rgba(37,99,235,0.10)] hover:-translate-y-1 hover:shadow-[0_22px_42px_rgba(37,99,235,0.18)] transition-all duration-500 p-6 sm:p-7 overflow-hidden">
+             <div className="absolute -right-9 -top-12 text-[12rem] font-black leading-none tracking-tighter text-blue-500/[0.07] transition-transform duration-700 group-hover:scale-110">01</div>
+             <div className="absolute bottom-0 left-0 h-1.5 w-full bg-gradient-to-r from-blue-500 via-sky-400 to-cyan-300"></div>
              <div className="relative z-10 flex h-full justify-between items-center gap-6">
                 <div className="flex-grow">
-                  <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center border border-blue-100 shadow-md text-blue-500 transform group-hover:rotate-6 transition-transform duration-500 mb-4">
+                  <div className="w-[3.25rem] h-[3.25rem] rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200 text-white transform group-hover:rotate-6 group-hover:scale-105 transition-transform duration-500 mb-4">
                     <Clock className="w-6 h-6" />
                   </div>
                   <h3 className="text-xl font-black text-slate-800 tracking-tight mb-2 group-hover:text-blue-700 transition-colors">考試日程與重要時程</h3>
                   <p className="text-sm font-medium text-slate-500 leading-relaxed">查看會考詳細作息時間、休息建議與鐘聲規定。</p>
                 </div>
-                <div className="shrink-0 w-10 h-10 rounded-full bg-blue-100/50 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                <div className="shrink-0 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-sm text-blue-600 group-hover:bg-blue-600 group-hover:text-white group-hover:translate-x-1 transition-all duration-300">
                   <ArrowRight className="w-5 h-5" />
                 </div>
              </div>
           </Link>
         </div>
-        <div className="col-span-1 lg:col-span-6 min-h-[10rem]">
-          <Link to="/rules" className="group block relative w-full h-full rounded-[2rem] bg-gradient-to-br from-rose-50 to-orange-50/50 border border-rose-100/60 shadow-sm hover:-translate-y-1.5 hover:shadow-xl transition-all duration-500 p-6 sm:p-8 overflow-hidden">
-             <div className="absolute top-0 right-0 w-48 h-48 bg-rose-200/30 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:scale-125 transition-transform duration-700"></div>
+        <div className="col-span-1 lg:col-span-6 min-h-[13.5rem]">
+          <Link to="/rules" className="group block relative w-full h-full rounded-[2rem] bg-[#fff3ea] border border-[#f3c6a9] shadow-[0_16px_35px_rgba(234,88,12,0.10)] hover:-translate-y-1 hover:shadow-[0_22px_42px_rgba(234,88,12,0.18)] transition-all duration-500 p-6 sm:p-7 overflow-hidden">
+             <div className="absolute -right-9 -top-12 text-[12rem] font-black leading-none tracking-tighter text-orange-500/[0.07] transition-transform duration-700 group-hover:scale-110">02</div>
+             <div className="absolute bottom-0 left-0 h-1.5 w-full bg-gradient-to-r from-rose-500 via-orange-400 to-amber-300"></div>
              <div className="relative z-10 flex h-full justify-between items-center gap-6">
                 <div className="flex-grow">
-                  <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center border border-rose-100 shadow-md text-rose-500 transform group-hover:-rotate-6 transition-transform duration-500 mb-4">
+                  <div className="w-[3.25rem] h-[3.25rem] rounded-2xl bg-[#e85d35] flex items-center justify-center shadow-lg shadow-orange-200 text-white transform group-hover:-rotate-6 group-hover:scale-105 transition-transform duration-500 mb-4">
                     <ShieldAlert className="w-6 h-6" />
                   </div>
                   <h3 className="text-xl font-black text-slate-800 tracking-tight mb-2 group-hover:text-rose-700 transition-colors">重要考試規則與違規行為</h3>
                   <p className="text-sm font-medium text-slate-500 leading-relaxed">考試前務必詳細閱讀，避免無謂失分。</p>
                 </div>
-                <div className="shrink-0 w-10 h-10 rounded-full bg-rose-100/50 flex items-center justify-center text-rose-600 group-hover:bg-rose-600 group-hover:text-white transition-colors duration-300">
+                <div className="shrink-0 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-sm text-[#d9522d] group-hover:bg-[#e85d35] group-hover:text-white group-hover:translate-x-1 transition-all duration-300">
                   <ArrowRight className="w-5 h-5" />
                 </div>
              </div>
