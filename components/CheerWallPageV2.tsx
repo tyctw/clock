@@ -7,11 +7,11 @@ import { WishRitualModal } from './WishRitualModal';
 interface Cheer { id: number; message: string; createdAt: string; }
 
 const colors = [
-  'border-rose-200 bg-rose-50 text-rose-600',
-  'border-amber-200 bg-amber-50 text-amber-600',
-  'border-sky-200 bg-sky-50 text-sky-600',
-  'border-violet-200 bg-violet-50 text-violet-600',
-  'border-emerald-200 bg-emerald-50 text-emerald-600',
+  'border-rose-200 border-t-rose-400 text-rose-500',
+  'border-amber-200 border-t-amber-400 text-amber-500',
+  'border-sky-200 border-t-sky-400 text-sky-500',
+  'border-violet-200 border-t-violet-400 text-violet-500',
+  'border-emerald-200 border-t-emerald-400 text-emerald-500',
 ];
 
 export const CheerWallPageV2: React.FC = () => {
@@ -86,8 +86,8 @@ export const CheerWallPageV2: React.FC = () => {
         </form>
       </section>
 
-      <section className="mt-10"><div className="mb-5 flex items-center gap-2"><Sparkles className="h-5 w-5 text-amber-500" /><h2 className="text-xl font-black text-slate-800">最新祝福</h2><span className="text-sm font-medium text-slate-400">每一句都值得被看見</span></div>
-        {cheers.length ? <div className="columns-1 gap-4 md:columns-2 lg:columns-3">{cheers.map((cheer, index) => { const tone = colors[index % colors.length]; return <article key={cheer.id} className={`mb-4 break-inside-avoid rounded-2xl border p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md ${tone}`}><Quote className="mb-3 h-5 w-5 opacity-45" /><p className="text-base font-bold leading-7 text-slate-700">{cheer.message}</p><div className="mt-5 flex items-center justify-between border-t border-current/10 pt-3 text-xs font-bold opacity-70"><span className="inline-flex items-center gap-1"><Heart className="h-3.5 w-3.5 fill-current" />考生加油</span><time>{new Date(cheer.createdAt).toLocaleDateString('zh-TW', { month: 'short', day: 'numeric' })}</time></div></article>; })}</div> : <div className="rounded-2xl border border-dashed border-rose-200 bg-white/60 py-14 text-center"><MessageCircleHeart className="mx-auto mb-3 h-10 w-10 text-rose-300" /><p className="font-bold text-slate-500">成為第一位留下祝福的人吧！</p></div>}
+      <section className="mt-12"><div className="mb-6 flex items-end justify-between gap-4"><div><div className="mb-2 flex items-center gap-2 text-xs font-black tracking-[0.18em] text-rose-500"><Sparkles className="h-4 w-4" />CHEER NOTES</div><h2 className="text-2xl font-black tracking-tight text-slate-800">最新祝福</h2><p className="mt-1 text-sm font-medium text-slate-400">每一句都值得被看見</p></div><span className="rounded-full border border-rose-100 bg-rose-50 px-3 py-1.5 text-xs font-black text-rose-500">{cheers.length} 則心意</span></div>
+        {cheers.length ? <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">{cheers.map((cheer, index) => { const tone = colors[index % colors.length]; return <article key={cheer.id} className={`group relative flex min-h-[190px] flex-col overflow-hidden rounded-2xl border border-t-4 bg-white p-5 shadow-[0_8px_18px_rgba(65,51,31,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_28px_rgba(65,51,31,0.12)] ${tone}`}><div className="absolute -right-7 -top-7 h-24 w-24 rounded-full bg-current opacity-[0.045] transition-transform duration-500 group-hover:scale-150" /><div className="relative flex items-center justify-between"><span className="flex h-8 w-8 items-center justify-center rounded-xl bg-current/10"><Quote className="h-4 w-4" /></span><span className="text-[10px] font-black tracking-[0.16em] text-slate-300">CHEER NOTE</span></div><p className="relative my-5 flex-grow text-base font-bold leading-7 text-slate-700">{cheer.message}</p><div className="relative flex items-center justify-between border-t border-slate-100 pt-3 text-xs font-bold text-slate-400"><span className={`inline-flex items-center gap-1 ${tone.split(' ').at(-1)}`}><Heart className="h-3.5 w-3.5 fill-current" />考生加油</span><time>{new Date(cheer.createdAt).toLocaleDateString('zh-TW', { month: 'short', day: 'numeric' })}</time></div></article>; })}</div> : <div className="rounded-2xl border border-dashed border-rose-200 bg-white/60 py-14 text-center"><MessageCircleHeart className="mx-auto mb-3 h-10 w-10 text-rose-300" /><p className="font-bold text-slate-500">成為第一位留下祝福的人吧！</p></div>}
       </section>
 
       {ritual && <WishRitualModal message={ritual.message} onComplete={completeSubmit} onCancel={() => setRitual(null)} />}
