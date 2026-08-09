@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 import CountdownTimer from './components/CountdownTimer';
+import HeroV2 from './components/HeroV2';
 import CheerCard from './components/CheerCard';
 import SchedulePage from './components/SchedulePage';
 import SidebarMenu from './components/SidebarMenu';
@@ -14,7 +15,7 @@ import StrategyPage from './components/StrategyPage';
 import { MockExamSchedulePage } from './components/MockExamSchedulePage';
 import { AboutUsPage } from './components/AboutUsPage';
 import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
-import { CheerWallPage } from './components/CheerWallPage';
+import { CheerWallPageV2 as CheerWallPage } from './components/CheerWallPageV2';
 import { EXAM_NAME, EXAM_DATES, TARGET_DATE } from './constants';
 import { ShieldAlert, ArrowRight, ArrowLeft, Clock, MessageSquareHeart, Target } from 'lucide-react';
 
@@ -63,7 +64,7 @@ class RouteErrorBoundary extends React.Component<
 const HomeContent: React.FC = () => (
   <>
     {/* Header Section */}
-    <header className="mb-12 sm:mb-20 relative animate-fade-in mt-4 sm:mt-8 lg:min-h-[620px] flex flex-col items-start rounded-[2rem] border border-white bg-[#fffdfa]/90 px-5 py-8 shadow-[0_18px_45px_rgba(65,51,31,0.10)] sm:rounded-[2.5rem] sm:px-10 sm:py-12 lg:justify-center lg:px-12 lg:py-14 lg:pr-[52%]">
+    <div className="hidden"><header className="mb-12 sm:mb-20 relative animate-fade-in mt-4 sm:mt-8 lg:min-h-[620px] flex flex-col items-start rounded-[2rem] border border-white bg-[#fffdfa]/90 px-5 py-8 shadow-[0_18px_45px_rgba(65,51,31,0.10)] sm:rounded-[2.5rem] sm:px-10 sm:py-12 lg:justify-center lg:px-12 lg:py-14 lg:pr-[52%]">
       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#fffdfa] border border-[#e3d8c9] shadow-sm mb-7">
         <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#ffe4d9]"><span className="w-2 h-2 rounded-full bg-[#fa6a42] animate-pulse"></span></span>
         <span className="text-[#705942] text-xs sm:text-sm font-bold tracking-wide">{EXAM_DATES} 國中教育會考倒數</span>
@@ -119,7 +120,8 @@ const HomeContent: React.FC = () => (
           </div>
         </a>
       </div>
-    </header>
+    </header></div>
+    <HeroV2 />
 
     {/* Bento Grid Layout */}
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 w-full max-w-6xl mx-auto">
