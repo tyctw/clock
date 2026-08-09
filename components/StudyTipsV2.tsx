@@ -68,7 +68,7 @@ const StudyTipsV2: React.FC = () => {
               </div>
               <div className="flex flex-col justify-between gap-3 border-t border-slate-100 pt-4 sm:flex-row sm:items-center">
                 <span className={`w-fit rounded-full px-3 py-1.5 text-xs font-bold ${theme.split(' ').slice(2, 4).join(' ')}`}>{active.tag}</span>
-                <Link to={`/strategy/${active.id}`} className="inline-flex w-fit items-center gap-2 rounded-xl bg-slate-800 px-4 py-2.5 text-sm font-black text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-slate-700">閱讀更多詳情 <ArrowUpRight className="h-4 w-4" /></Link>
+                <Link to={`/strategy/${active.id}`} className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-800 px-4 py-2.5 text-sm font-black text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-slate-700 sm:w-fit">閱讀更多詳情 <ArrowUpRight className="h-4 w-4" /></Link>
               </div>
             </div>
           </div>
