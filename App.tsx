@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 import CountdownTimer from './components/CountdownTimer';
 import HeroV2 from './components/HeroV2';
 import SiteFooter from './components/SiteFooter';
 import CheerCard from './components/CheerCard';
 import SchedulePage from './components/SchedulePage';
-import SidebarMenu from './components/SidebarMenu';
+import SidebarMenu from './components/SidebarMenuV2';
 import NextEvent from './components/NextEvent';
 import ClockHeader from './components/ClockHeader';
 import ExamRules from './components/ExamRules';
@@ -207,12 +207,13 @@ const RulesPage: React.FC = () => (
 
 const App: React.FC = () => {
   const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="min-h-0 text-slate-800 selection:bg-[#ffcb4d] selection:text-[#10264e] flex flex-col relative overflow-x-hidden bg-[#f5f0e7]">
       <ScrollToTop />
-      <ClockHeader />
-      <SidebarMenu />
+      <ClockHeader isMenuOpen={isMenuOpen} onMenuToggle={() => setIsMenuOpen((current) => !current)} />
+      <SidebarMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       
       {/* Dynamic Background (Light Theme) */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
