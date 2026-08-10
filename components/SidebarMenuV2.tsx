@@ -3,7 +3,11 @@ import { ChevronRight, Heart, Mail, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface Props { isOpen: boolean; onClose: () => void; }
-const externalLinks = [{ name: '基北區會考', url: 'https://ceecc.vercel.app/' }, { name: '桃園區會考', url: 'https://teece.vercel.app/' }, { name: '中投區會考', url: 'https://ceeecc.vercel.app/' }];
+const externalLinks = [
+  { name: '基北區會考', url: 'https://tyctw.github.io/spare/?route=/scoring-rules/taipei' },
+  { name: '桃連區會考', url: 'https://tyctw.github.io/spare/?route=/scoring-rules/taoyuan' },
+  { name: '中投區會考', url: 'https://tyctw.github.io/spare/?route=/scoring-rules/central' },
+];
 
 const SidebarMenuV2: React.FC<Props> = ({ isOpen, onClose }) => {
   useEffect(() => { const closeOnEscape = (event: KeyboardEvent) => { if (event.key === 'Escape') onClose(); }; window.addEventListener('keydown', closeOnEscape); return () => window.removeEventListener('keydown', closeOnEscape); }, [onClose]);
