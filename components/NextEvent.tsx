@@ -33,30 +33,30 @@ const NextEvent: React.FC = () => {
   if (!nextEvent) return null;
 
   return (
-    <article className="group relative h-full w-full overflow-hidden rounded-[2rem] border border-[#193968] bg-[#102b54] p-5 text-white shadow-[0_18px_38px_rgba(16,43,84,0.22)] sm:p-6">
+    <article className="group relative h-full w-full overflow-hidden rounded-[2rem] border border-[#193968] bg-[#102b54] p-5 text-white shadow-[0_18px_38px_rgba(16,43,84,0.22)]">
       <div className="absolute -right-20 -top-24 h-64 w-64 rounded-full bg-cyan-300/20 blur-3xl transition-transform duration-700 group-hover:scale-125" />
       <div className="absolute -bottom-24 -left-20 h-52 w-52 rounded-full bg-blue-500/25 blur-3xl" />
       <div className="absolute right-5 top-4 text-8xl font-black tracking-tighter text-white/[0.045]">01</div>
 
-      <div className="relative flex h-full flex-col justify-between gap-5">
+      <div className="relative flex h-full flex-col justify-between gap-3">
         <div>
-          <div className="mb-3 flex items-center justify-between gap-3">
+          <div className="mb-2 flex items-center justify-between gap-3">
             <span className="inline-flex items-center gap-2 rounded-full border border-cyan-200/25 bg-white/10 px-3 py-1.5 text-[10px] font-black tracking-[0.18em] text-cyan-100 backdrop-blur-sm"><CalendarDays className="h-3.5 w-3.5" />UPCOMING EVENT</span>
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-cyan-300 text-[#102b54] shadow-lg shadow-cyan-400/20"><Timer className="h-4 w-4" /></span>
           </div>
-          <h2 className="text-2xl font-black tracking-tight sm:text-3xl">{nextEvent.task}</h2>
-          <p className="mt-2 text-sm font-bold tracking-wider text-cyan-100/85">{nextEvent.date}</p>
+          <h2 className="text-2xl font-black tracking-tight">{nextEvent.task}</h2>
+          <p className="mt-1 text-sm font-bold tracking-wider text-cyan-100/85">{nextEvent.date}</p>
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-black/10 p-3.5 backdrop-blur-sm">
-          <div className="mb-2 flex items-center gap-2 text-[10px] font-black tracking-[0.18em] text-cyan-100/70"><Clock3 className="h-3.5 w-3.5" />TIME REMAINING</div>
+        <div className="rounded-2xl border border-white/10 bg-black/10 p-3 backdrop-blur-sm">
+          <div className="mb-1.5 flex items-center gap-2 text-[10px] font-black tracking-[0.18em] text-cyan-100/70"><Clock3 className="h-3.5 w-3.5" />TIME REMAINING</div>
           <div className="grid grid-cols-[1.4fr_1fr_1fr] gap-2">
-            <div className="border-r border-white/10"><span className="block text-4xl font-black leading-none tabular-nums text-white sm:text-5xl">{timeLeft.days}</span><span className="mt-1 block text-xs font-bold text-cyan-100/70">天</span></div>
-            <div><span className="block text-2xl font-black leading-none tabular-nums text-cyan-100">{String(timeLeft.hours).padStart(2, '0')}</span><span className="mt-1 block text-[10px] font-black tracking-wider text-cyan-100/60">HRS</span></div>
-            <div><span className="block text-2xl font-black leading-none tabular-nums text-cyan-100">{String(timeLeft.minutes).padStart(2, '0')}</span><span className="mt-1 block text-[10px] font-black tracking-wider text-cyan-100/60">MIN</span></div>
+            <div className="border-r border-white/10"><span className="block text-3xl font-black leading-none tabular-nums text-white sm:text-4xl">{timeLeft.days}</span><span className="mt-1 block text-xs font-bold text-cyan-100/70">天</span></div>
+            <div><span className="block text-xl font-black leading-none tabular-nums text-cyan-100">{String(timeLeft.hours).padStart(2, '0')}</span><span className="mt-1 block text-[10px] font-black tracking-wider text-cyan-100/60">HRS</span></div>
+            <div><span className="block text-xl font-black leading-none tabular-nums text-cyan-100">{String(timeLeft.minutes).padStart(2, '0')}</span><span className="mt-1 block text-[10px] font-black tracking-wider text-cyan-100/60">MIN</span></div>
           </div>
         </div>
-        <Link to="/important-schedule" className="inline-flex items-center justify-between rounded-xl border border-cyan-200/20 bg-white/10 px-4 py-3 text-sm font-black text-cyan-50 transition hover:bg-cyan-300 hover:text-[#102b54]">
+        <Link to="/important-schedule" className="inline-flex items-center justify-between rounded-xl border border-cyan-200/20 bg-white/10 px-4 py-2.5 text-sm font-black text-cyan-50 transition hover:bg-cyan-300 hover:text-[#102b54]">
           查看會考重要日程 <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
