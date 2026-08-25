@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 interface Props { isOpen: boolean; onClose: () => void; }
 const externalLinks = [
-  { name: '基北區會考', url: 'https://tyctw.github.io/spare/?route=/scoring-rules/taipei' },
-  { name: '桃連區會考', url: 'https://tyctw.github.io/spare/?route=/scoring-rules/taoyuan' },
-  { name: '中投區會考', url: 'https://tyctw.github.io/spare/?route=/scoring-rules/central' },
+  { name: '基北區會考落點', url: 'https://tyctw.github.io/spare/?route=/scoring-rules/taipei' },
+  { name: '桃連區會考落點', url: 'https://tyctw.github.io/spare/?route=/scoring-rules/taoyuan' },
+  { name: '中投區會考落點', url: 'https://tyctw.github.io/spare/?route=/scoring-rules/central' },
 ];
 
 const SidebarMenuV2: React.FC<Props> = ({ isOpen, onClose }) => {

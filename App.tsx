@@ -210,7 +210,7 @@ const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-0 text-slate-800 selection:bg-[#ffcb4d] selection:text-[#10264e] flex flex-col relative overflow-x-hidden bg-[#f5f0e7]">
+    <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-[#f5f0e7] text-slate-800 selection:bg-[#ffcb4d] selection:text-[#10264e]">
       <ScrollToTop />
       <ClockHeader isMenuOpen={isMenuOpen} onMenuToggle={() => setIsMenuOpen((current) => !current)} />
       <SidebarMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
@@ -220,7 +220,7 @@ const App: React.FC = () => {
         <div className="absolute inset-0 bg-[#f5f0e7]"></div>
       </div>
 
-      <main className="container mx-auto px-5 sm:px-8 pt-24 pb-0 sm:pb-4 z-10 max-w-6xl flex flex-col">
+      <main className="container z-10 mx-auto flex w-full max-w-6xl flex-grow flex-col px-5 pb-8 pt-24 sm:px-8">
         <RouteErrorBoundary resetKey={location.pathname}>
           <Routes>
             <Route path="/" element={<HomeContent />} />
@@ -235,28 +235,8 @@ const App: React.FC = () => {
           </Routes>
         </RouteErrorBoundary>
 
-        <footer className="hidden">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-4">
-            <div className="flex flex-col items-center md:items-start gap-1">
-              <p className="font-semibold text-slate-500">© TYCTW 會考落點分析</p>
-              <a href="mailto:tyctw.analyze@gmail.com" aria-label="聯絡我們 (tyctw.analyze@gmail.com)" className="hover:text-blue-600 transition-colors duration-300">
-                tyctw.analyze@gmail.com
-              </a>
-              <p className="text-xs font-mono text-slate-300">
-                Target: {TARGET_DATE.toISOString().split('T')[0]}
-              </p>
-            </div>
-            <div className="flex items-center gap-6 mt-4 md:mt-0">
-              <Link to="/about" className="hover:text-blue-600 transition-colors duration-300 font-medium">關於我們</Link>
-              <Link to="/privacy" className="hover:text-blue-600 transition-colors duration-300 font-medium">隱私權政策</Link>
-            </div>
-          </div>
-          <div className="mt-5 flex justify-center">
-            <a href="https://tyctw.github.io/spare/support/" target="_blank" rel="noopener noreferrer" className="rounded-full bg-rose-50 px-4 py-2 text-xs font-bold text-rose-500 transition-colors hover:bg-rose-100 hover:text-rose-600">小額贊助</a>
-          </div>
-        </footer>
-        <SiteFooter />
       </main>
+      <SiteFooter />
     </div>
   );
 };

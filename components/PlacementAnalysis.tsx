@@ -26,7 +26,7 @@ const PlacementAnalysis: React.FC = () => (
 
       <div>
         <h2 className="mb-2 text-2xl font-black tracking-tight text-[#173d78] transition-colors group-hover:text-blue-600 sm:text-[1.7rem]">會考落點分析系統</h2>
-        <p className="max-w-md text-sm font-medium leading-6 text-blue-950/60">免費整理升學資訊，協助比較高中、高職、五專等不同升學路徑，讓每位學生都能安心做選擇。</p>
+        <p className="max-w-md text-sm font-medium leading-6 text-blue-950/60">你的會考成績，能選哪些高中職？</p>
       </div>
 
       <div className="flex items-center justify-between gap-3 border-t border-blue-200/60 pt-4">
