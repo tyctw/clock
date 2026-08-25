@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { CalendarDays, Clock3, Timer } from 'lucide-react';
+import { ArrowRight, CalendarDays, Clock3, Timer } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { SCHEDULE_ITEMS } from '../constants';
 import { ScheduleItem } from '../types';
 
@@ -55,6 +56,9 @@ const NextEvent: React.FC = () => {
             <div><span className="block text-2xl font-black leading-none tabular-nums text-cyan-100">{String(timeLeft.minutes).padStart(2, '0')}</span><span className="mt-1 block text-[10px] font-black tracking-wider text-cyan-100/60">MIN</span></div>
           </div>
         </div>
+        <Link to="/important-schedule" className="inline-flex items-center justify-between rounded-xl border border-cyan-200/20 bg-white/10 px-4 py-3 text-sm font-black text-cyan-50 transition hover:bg-cyan-300 hover:text-[#102b54]">
+          查看會考重要日程 <ArrowRight className="h-4 w-4" />
+        </Link>
       </div>
     </article>
   );

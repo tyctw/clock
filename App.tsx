@@ -5,6 +5,7 @@ import HeroV2 from './components/HeroV2';
 import SiteFooter from './components/SiteFooter';
 import CheerCard from './components/CheerCard';
 import SchedulePage from './components/SchedulePage';
+import ImportantSchedulePage from './components/ImportantSchedulePage';
 import SidebarMenu from './components/SidebarMenuV2';
 import NextEvent from './components/NextEvent';
 import ClockHeader from './components/ClockHeader';
@@ -226,6 +227,7 @@ const App: React.FC = () => {
             <Route path="/" element={<HomeContent />} />
             <Route path="/rules" element={<RulesPage />} />
             <Route path="/schedule" element={<SchedulePage />} />
+            <Route path="/important-schedule" element={<ImportantSchedulePage />} />
             <Route path="/mock-exams" element={<MockExamSchedulePage />} />
             <Route path="/strategy/:subjectId" element={<StrategyPage />} />
             <Route path="/about" element={<AboutUsPage />} />
