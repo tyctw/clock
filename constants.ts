@@ -1,4 +1,5 @@
 import { ScheduleItem } from './types';
+import { ADMISSION_SCHEDULE } from './lib/admissionSchedule';
 
 // 116 CAP Date: May 15, 2027
 // Exam starts at 08:30 AM with Social Studies
@@ -15,18 +16,4 @@ export const MOTIVATION_PROMPT = `
 語氣：正向、鼓勵、不說教。
 `;
 
-export const SCHEDULE_ITEMS: ScheduleItem[] = [
-  { task: "國中會考報名時間", date: "待簡章公布" },
-  { task: "國中會考寄發准考證", date: "待簡章公布" },
-  { 
-    task: "國中會考日期", 
-    date: "116年5月15日 ~ 5月16日", 
-    dateObj: TARGET_DATE,
-    isHighlight: true 
-  },
-  { task: "國中會考成績公布時間", date: "待簡章公布" },
-  { task: "個人序位區間公告時間", date: "待簡章公布" },
-  { task: "就學區免試入學填志願", date: "待簡章公布", note: "（結束依各地區時間為主）" },
-  { task: "就學區免試入學放榜時間", date: "待簡章公布", note: "（放榜依各地區時間為主）" },
-  { task: "免試入學報到", date: "待簡章公布" },
-];
+export const SCHEDULE_ITEMS: ScheduleItem[] = ADMISSION_SCHEDULE;
