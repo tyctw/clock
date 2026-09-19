@@ -4,7 +4,7 @@ import { Clock, BookOpen, PenTool, FlaskConical, Headphones, Navigation } from '
 const schedule = [
   {
     day: "Day 1",
-    date: "116年5月22日 (星期六)",
+    date: "116年5月15日 (星期六)",
     accent: "bg-blue-500",
     lightAccent: "bg-blue-50",
     textAccent: "text-blue-600",
@@ -17,7 +17,7 @@ const schedule = [
   },
   {
     day: "Day 2",
-    date: "116年5月23日 (星期日)",
+    date: "116年5月16日 (星期日)",
     accent: "bg-indigo-500",
     lightAccent: "bg-indigo-50",
     textAccent: "text-indigo-600",
