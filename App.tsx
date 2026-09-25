@@ -221,7 +221,7 @@ const App: React.FC = () => {
         <div className="absolute inset-0 bg-[#f5f0e7]"></div>
       </div>
 
-      <main className="container z-10 mx-auto flex w-full max-w-6xl flex-grow flex-col px-5 pb-8 pt-24 sm:px-8">
+      <main className="container z-10 mx-auto flex w-full max-w-6xl flex-grow flex-col px-5 pb-8 pt-32 sm:px-8 sm:pt-36">
         <RouteErrorBoundary resetKey={location.pathname}>
           <Routes>
             <Route path="/" element={<HomeContent />} />
